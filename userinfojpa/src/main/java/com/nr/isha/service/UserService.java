@@ -31,9 +31,9 @@ public class UserService {
 		 return (List<User>) userRepository.findAll();
 	 }
 	
-	public Optional<User> gettopic(Long id){
+	public User getUserById(Long id){
 		
-		return userRepository.findById(id);
+		return  userRepository.getOne(id);
 	//List<User>list=(List<User>)userRepository.findById(id);
  
 		  
@@ -46,7 +46,7 @@ public class UserService {
 
 	public void update(User user) {
 		System.out.println("UserSErvice->id"+user);
-		 
+		  
 		userRepository.save(user);
 		 
 		  /*int count=0;
@@ -109,8 +109,25 @@ if(user!=null){
  
  
 	
-	public User isUserExistName(String name,String password) {
-		return null;
+	public boolean isUserExist(User user) {
+		 
+		String un=user.getName();
+		String pw=user.getPassword();
+		 User u=userRepository.findByName(user.getName());
+		 if(u!=null){
+			 return true;
+		 }
+		 return false;
+		/*User usertemp=jtemp.queryForObject("select * from user where  name=? and password=?",
+		        new Object[]{un,pw}, new UserRowMapper());
+
+		 
+		if(usertemp!=null){
+				return true;
+		}else{
+				return false;
+		}*/
+		 
 		/*User usertempuser=userRepository.verifyUserinfo(name, password);
 		//User usertemppasword=userRepository.findByName(user.getPassword());
 		 if(usertempuser!=null){
@@ -131,13 +148,15 @@ if(user!=null){
 		 
 		
 	}*/
+
+	 
 }
 class UserRowMapper implements RowMapper<User>
 {
     @Override
     public User mapRow(ResultSet rs, int rowNum) throws SQLException {
         User user = new User();
-        user.setId(rs.getLong("id"));
+       // user.setId(rs.getLong("id"));
         user.setName(rs.getString("name"));
         user.setPassword(rs.getString("password"));
         return user;

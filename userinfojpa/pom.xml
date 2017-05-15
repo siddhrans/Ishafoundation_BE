@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.nr.isha</groupId>
-	<artifactId>userinfojpa</artifactId>
+	<artifactId>userinfojpa27</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>userinfojpa</name>
+	<name>userinfojpa27</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
