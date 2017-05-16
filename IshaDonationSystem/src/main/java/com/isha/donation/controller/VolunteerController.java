@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.isha.donation.entity.Volunteer;
 import com.isha.donation.service.VolunteerService;
+import com.isha.donation.utils.Utils;
 
 @Controller
 public class VolunteerController {
 
     @Autowired
     private VolunteerService mVolunteerService;
+    private Utils mUtils = new Utils();
 
     @RequestMapping(value = "/volunteer", method = RequestMethod.GET)		
     @ResponseBody
@@ -29,8 +31,10 @@ public class VolunteerController {
     public String create(@RequestBody Volunteer volunteer) {
         String volunteerId = "";
       try {
-          mVolunteerService.save(volunteer);
-          volunteerId = String.valueOf(volunteer.getId());
+              volunteer.setCreateDate(mUtils.getCurrentTime());
+              volunteer.setComments(volunteer.getName() + " : added.");   // Need to discuss
+              mVolunteerService.save(volunteer);
+              volunteerId = String.valueOf(volunteer.getId());
       }
       catch (Exception ex) {
         return "Error creating the user: " + ex.toString();
@@ -69,6 +73,7 @@ public class VolunteerController {
     @ResponseBody
     public String updateUser(@RequestBody Volunteer volunteer,@PathVariable Long id) {
         try {
+        	volunteer.setUpdateDate(mUtils.getCurrentTime());
             volunteer.setId(id);
             mVolunteerService.save(volunteer);
         }
