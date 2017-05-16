@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.isha.donation.Service.VolunteerService;
 import com.isha.donation.entity.Volunteer;
+import com.isha.donation.service.VolunteerService;
 
 @Controller
 public class VolunteerController {

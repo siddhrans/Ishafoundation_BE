@@ -1,4 +1,4 @@
-package com.isha.donation.Service;
+package com.isha.donation.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

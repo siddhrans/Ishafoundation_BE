@@ -5,37 +5,60 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "volunteerdetails")
 public class Volunteer {
     @Id 
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;	
+    @Column(name = "Volunteer_ID", nullable = false)
+    private Long id;
 
     public Volunteer(Long id) {
         this.id = id;
         }
 
-    @Column(name = "name")
+    @Column(name = "Volunteer_User_Name", nullable = false)
+    private String userName;
+
+    @Column(name = "Volunteer_Name", nullable = false)
     private String name;
 
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(name = "Volunteer_Phone_Num", nullable = false)
+    private String PhoneNo;
+
+    @Column(name = "Volunteer_Email_Id")
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "Volunteer_Password")
     private String password;
 
-    @Column(name = "mobile")
-    private String PhoneNo;
+    @Column(name = "Volunteer_Status")
+    private String status;
+
+    @Column(name = "Create_Dt")
+    private String createDate;
+
+    @Column(name = "Update_Dt")
+    private String updateDate;
+
+    @Column(name = "Comments")
+    private String comments;
 
     private transient String confirmPassword;
 
-    public Volunteer(String name, String email, String password, String PhoneNo) {
+    public Volunteer(String userName, String name, String PhoneNo, String email,String password,
+            String status,String createDate,String updateDate,String comments) {
+        this.userName = userName;
         this.name = name;
+        this.PhoneNo = PhoneNo;
         this.email = email;
         this.password = password;
-        this.PhoneNo = PhoneNo;
+        this.status = status;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+        this.comments = comments;
         }
 
     public Volunteer() {
@@ -54,6 +77,10 @@ public class Volunteer {
         return name;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -62,8 +89,28 @@ public class Volunteer {
         return PhoneNo;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public String getupdateDate() {
+        return updateDate;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public void setId(Long id) {
@@ -79,7 +126,23 @@ public class Volunteer {
     }
 
     public void setPhoneNo(String phoneNo) {
-        PhoneNo = phoneNo;
+        this.PhoneNo = phoneNo;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public void setUpdateDate(String updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 
     public String getConfirmPassword() {

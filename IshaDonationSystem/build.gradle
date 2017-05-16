@@ -30,7 +30,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-web-services')
 	compile('org.springframework.boot:spring-boot-starter-websocket')
-	compile group: 'javax.persistence', name: 'persistence-api', version: '1.0'
+	compile group: 'javax.persistence', name: 'persistence-api'
 	runtime('mysql:mysql-connector-java')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

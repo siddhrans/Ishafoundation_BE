@@ -1,4 +1,4 @@
-package com.isha.donation.Service;
+package com.isha.donation.service;
 
 public class DonarService {
 
