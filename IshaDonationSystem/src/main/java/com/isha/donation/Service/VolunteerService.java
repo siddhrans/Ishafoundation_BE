@@ -12,25 +12,24 @@ public class VolunteerService {
     @Autowired
     private IVolunteerRepository mVolunteerRepository;
 
-    public Object findAll(){
+    public Object findAll() {
         return mVolunteerRepository.findAll();
     }
 
-    public Volunteer findById(Long id){
+    public Volunteer findById(Long id) {
         return mVolunteerRepository.findOne(id);
     }
 
-    public Volunteer save(Volunteer volunteer){
+    public Volunteer save(Volunteer volunteer) {
         return mVolunteerRepository.save(volunteer);
     }
 
-    public void delete(Volunteer volunteer){
+    public void delete(Volunteer volunteer) {
         mVolunteerRepository.delete(volunteer);
         return;
     }
 
-    public Volunteer findByEmail(String email) {
-        // TODO Need to implemet after volunteer db created (Have some doubts on this)
-        return null;
+    public Volunteer findByPhoneNo(String phoneNo) {
+        return mVolunteerRepository.findByPhoneNo(phoneNo);
     }
 }

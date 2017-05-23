@@ -7,5 +7,5 @@ import com.isha.donation.entity.Volunteer;
 @Repository
 public class VolunteerDAO {
 
-    private static Map<Integer, Volunteer> volunteersMap;
+    private static Map<Long, Volunteer> volunteersMap;
 }

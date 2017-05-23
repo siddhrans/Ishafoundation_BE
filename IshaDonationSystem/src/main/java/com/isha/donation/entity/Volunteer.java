@@ -10,14 +10,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "volunteerdetails")
 public class Volunteer {
-    @Id 
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Volunteer_ID", nullable = false)
     private Long id;
 
     public Volunteer(Long id) {
         this.id = id;
-        }
+    }
 
     @Column(name = "Volunteer_User_Name", nullable = false)
     private String userName;
@@ -26,7 +26,7 @@ public class Volunteer {
     private String name;
 
     @Column(name = "Volunteer_Phone_Num", nullable = false)
-    private String PhoneNo;
+    private String phoneNo;
 
     @Column(name = "Volunteer_Email_Id")
     private String email;
@@ -48,18 +48,18 @@ public class Volunteer {
 
     private transient String confirmPassword;
 
-    public Volunteer(String userName, String name, String PhoneNo, String email,String password,
-            String status,String createDate,String updateDate,String comments) {
+    public Volunteer(String userName, String name, String PhoneNo, String email, String password, String status,
+            String createDate, String updateDate, String comments) {
         this.userName = userName;
         this.name = name;
-        this.PhoneNo = PhoneNo;
+        this.phoneNo = PhoneNo;
         this.email = email;
         this.password = password;
         this.status = status;
         this.createDate = createDate;
         this.updateDate = updateDate;
         this.comments = comments;
-        }
+    }
 
     public Volunteer() {
         // TODO Auto-generated constructor stub
@@ -86,7 +86,7 @@ public class Volunteer {
     }
 
     public String getPhoneNo() {
-        return PhoneNo;
+        return phoneNo;
     }
 
     public String getStatus() {
@@ -126,7 +126,7 @@ public class Volunteer {
     }
 
     public void setPhoneNo(String phoneNo) {
-        this.PhoneNo = phoneNo;
+        this.phoneNo = phoneNo;
     }
 
     public void setStatus(String status) {
