@@ -4,142 +4,145 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "donardetails")
-public class Donar {
+@Table(name = "donordetails")
+public class Donor {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "Donor_Details_ID", nullable = false)
     private Long id;
 
-    public Long getDonarId() {
+    public Long getDonorId() {
         return id;
     }
 
-    public void setDonarId(Long id) {
+    public void setDonorId(Long id) {
         this.id = id;
     }
 
-    public Donar(Long id) {
+    public Donor(Long id) {
         this.id = id;
     }
 
-    public Donar() {
+    public Donor() {
 
     }
 
     @Column(name = "Donor_Phone_Num", nullable = false)
     private String mobileNumber;
 
-    public String getDonarPhoneNumber() {
+    public String getDonorPhoneNumber() {
         return mobileNumber;
     }
 
-    public void setDonarPhoneNumber(String mobileNumber) {
+    public void setDonorPhoneNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
 
     @Column(name = "Donor_Name", nullable = false)
     private String name;
 
-    public String getDonarName() {
+    public String getDonorName() {
         return name;
     }
 
-    public void setDonarName(String name) {
+    public void setDonorName(String name) {
         this.name = name;
     }
 
     @Column(name = "Donor_Email_id", nullable = false)
     private String email;
 
-    public String getDonarEmail() {
+    public String getDonorEmail() {
         return email;
     }
 
-    public void setDonarEmail(String email) {
+    public void setDonorEmail(String email) {
         this.email = email;
     }
 
     @Column(name = "Donor_Reference_Name_1")
     private String refName1;
 
-    public String getDonarRefName1() {
+    public String getDonorRefName1() {
         return refName1;
     }
 
-    public void setDonarRefName1(String refName1) {
+    public void setDonorRefName1(String refName1) {
         this.refName1 = refName1;
     }
 
     @Column(name = "Donor_Reference_Name_2")
     private String refName2;
 
-    public String getDonarRefName2() {
+    public String getDonorRefName2() {
         return refName2;
     }
 
-    public void setDonarRefName2(String refName2) {
+    public void setDonorRefName2(String refName2) {
         this.refName2 = refName2;
     }
 
     @Column(name = "Donor_Status")
-    private String status;
+    private String status="Active";
 
-    public String getDonarStatus() {
+    public String getDonorStatus() {
         return status;
     }
 
-    public void setDonarStatus(String status) {
+    public void setDonorStatus(String status) {
         this.status = status;
     }
 
     @Column(name = "Donor_Region")
     private String region;
 
-    public String getDonarRegion() {
+    public String getDonorRegion() {
         return region;
     }
 
-    public void setDonarRegion(String region) {
+    public void setDonorRegion(String region) {
         this.region = region;
     }
 
     @Column(name = "Donor_State")
     private String state;
 
-    public String getDonarState() {
+    public String getDonorState() {
         return state;
     }
 
-    public void setDonarState(String state) {
+    public void setDonorState(String state) {
         this.state = state;
     }
 
     @Column(name = "Donor_City")
     private String city;
 
-    public String getDonarCity() {
+    public String getDonorCity() {
         return city;
     }
 
-    public void setDonarCity(String city) {
+    public void setDonorCity(String city) {
         this.city = city;
     }
 
     @Column(name = "Donor_Center")
     private String center;
 
-    public String getDonarcenter() {
+    public String getDonorcenter() {
         return center;
     }
 
-    public void setDonarCenter(String center) {
+    public void setDonorCenter(String center) {
         this.center = center;
     }
 
@@ -313,11 +316,11 @@ public class Donar {
     @Column(name = "Create_Dt", nullable = false)
     private String createDate;
 
-    public String getCreateDonardate() {
+    public String getCreateDonordate() {
         return createDate;
     }
 
-    public void setCreateDonardate(String createDate) {
+    public void setCreateDonordate(String createDate) {
         this.createDate = createDate;
     }
 
@@ -335,11 +338,11 @@ public class Donar {
     @Column(name = "Update_Dt")
     private String updateDate;
 
-    public String getDonarUpdatedDate() {
+    public String getDonorUpdatedDate() {
         return updateDate;
     }
 
-    public void setDonarUpdatedDate(String updateDate) {
+    public void setDonorUpdatedDate(String updateDate) {
         this.updateDate = updateDate;
     }
 
@@ -357,11 +360,27 @@ public class Donar {
     @Column(name = "Update_Comments")
     private String comments;
 
-    public String getDonarComments() {
+    public String getDonorComments() {
         return comments;
     }
 
-    public void setDonarComments(String comments) {
+    public void setDonorComments(String comments) {
         this.comments = comments;
     }
+
+	@Override
+	public String toString() {
+		return "Donor [id=" + id + ", mobileNumber=" + mobileNumber + ", name=" + name + ", email=" + email
+				+ ", refName1=" + refName1 + ", refName2=" + refName2 + ", status=" + status + ", region=" + region
+				+ ", state=" + state + ", city=" + city + ", center=" + center + ", bankAccountholderName="
+				+ bankAccountholderName + ", bankName=" + bankName + ", branchName=" + branchName
+				+ ", bankAccountNumber=" + bankAccountNumber + ", bankMICR=" + bankMICR + ", bankIfscCode="
+				+ bankIfscCode + ", bankAccountType=" + bankAccountType + ", bankUMRN=" + bankUMRN
+				+ ", bankSponsorCode=" + bankSponsorCode + ", bankUtilityCode=" + bankUtilityCode + ", startDate="
+				+ startDate + ", endDate=" + endDate + ", frequency=" + frequency + ", debitType=" + debitType
+				+ ", TPPSConsumerCode=" + TPPSConsumerCode + ", createDate=" + createDate + ", createdBy=" + createdBy
+				+ ", updateDate=" + updateDate + ", updatedBy=" + updatedBy + ", comments=" + comments + "]";
+	}
+    
+    
 }

@@ -35,7 +35,7 @@ public class Volunteer {
     private String password;
 
     @Column(name = "Volunteer_Status")
-    private String status;
+    private String status="Active";
 
     @Column(name = "Create_Dt")
     private String createDate;
@@ -152,4 +152,5 @@ public class Volunteer {
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
+    
 }
