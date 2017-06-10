@@ -1,9 +1,13 @@
 CREATE DATABASE `idsdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 <<<<<<< HEAD
+<<<<<<< HEAD
 CREATE TABLE `donordetails` (
 =======
 CREATE TABLE `donardetails` (
 >>>>>>> bb393af89180a5b3f89594d2515d4c3fe6fe2ecf
+=======
+CREATE TABLE `donordetails` (
+>>>>>>> 7831caaac8d7bc7371ef95c5e00b48e077e1a252
   `Donor_Details_ID` int(11) NOT NULL AUTO_INCREMENT ,
   `Donor_Phone_Num` varchar(45) NOT NULL,
   `Donor_Name` varchar(45) NOT NULL,
