@@ -1,5 +1,5 @@
 CREATE DATABASE `idsdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
-CREATE TABLE `donardetails` (
+CREATE TABLE `donordetails` (
   `Donor_Details_ID` int(11) NOT NULL AUTO_INCREMENT ,
   `Donor_Phone_Num` varchar(45) NOT NULL,
   `Donor_Name` varchar(45) NOT NULL,
