@@ -1,6 +1,6 @@
 CREATE DATABASE `idsdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
-CREATE TABLE `donardetails` (
-  `DonorDetails_ID` int(11) NOT NULL,
+CREATE TABLE `donordetails` (
+  `Donor_Details_ID` int(11) NOT NULL AUTO_INCREMENT ,
   `Donor_Phone_Num` varchar(45) NOT NULL,
   `Donor_Name` varchar(45) NOT NULL,
   `Donor_Email_id` varchar(45) NOT NULL,
@@ -31,8 +31,8 @@ CREATE TABLE `donardetails` (
   `Update_Dt` varchar(45) DEFAULT NULL,
   `Update_By` varchar(45) DEFAULT NULL,
   `Update_Comments` varchar(500) DEFAULT NULL,
-  PRIMARY KEY (`DonorDetails_ID`),
-  UNIQUE KEY `DonorDetails_ID_UNIQUE` (`DonorDetails_ID`)
+  PRIMARY KEY (`Donor_Details_ID`),
+  UNIQUE KEY `Donor_Details_ID_UNIQUE` (`Donor_Details_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 CREATE TABLE `volunteerdetails` (
   `Volunteer_Id` int(11) NOT NULL AUTO_INCREMENT,
