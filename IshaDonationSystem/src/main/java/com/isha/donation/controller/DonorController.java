@@ -44,7 +44,7 @@ public class DonorController {
         	
          System.out.println(donor);
             donor.setCreateDonordate(mUtils.getCurrentTime());
-            donor.setDonorComments(donor.getCreatorName() + " : added.");
+            donor.setDonorComments(donor.getCreatorName());
           Donor donortemp=  mdonorService.save(donor);
           
            donorId = String.valueOf(donor.getDonorId());
@@ -67,18 +67,14 @@ public class DonorController {
     public ResponseEntity<?>  updateUser(@RequestBody Donor donor, @PathVariable Long id,UriComponentsBuilder ucBuilder) {
     	Donor donortemp=null;
         try {
-        	 
-        	
-            donor.setDonorUpdatedDate(mUtils.getCurrentTime());
+            donor.setCreateDonordate(mUtils.getCurrentTime());
             donor.setDonorId(id);
               donortemp=mdonorService.save(donor);
         } catch (Exception ex) {
         	return new ResponseEntity("Error updating the donor: not found.",HttpStatus.NOT_FOUND);
           //  return "Error updating the donor: " + ex.toString();
         }
-        return new ResponseEntity<Donor>(donortemp, HttpStatus.OK);
-        
-              
+        return new ResponseEntity<Donor>(donortemp, HttpStatus.OK);              
        // return "donor succesfully updated!";
     }
 

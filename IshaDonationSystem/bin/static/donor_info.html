@@ -1,6 +1,6 @@
 <div class="col-md-9">
-	<div class="col-md-4">
-		<h3>Donor's Info</h3>
+	<div class="col-md-4" id="ddd">
+		<h3> Donor's Info</h3>
 	</div>
 	<div class="col-md-8" id="donorList">
 
@@ -11,7 +11,7 @@
 								
 					</div>
 				 </div>
-				 <div id="searchBar">
+<!-- 				 <div id="searchBar">
 					<i class="fa fa-filter" style="float:left;font-size: 22px;margin-left: -27px;"></i>
 					<div class="input-group" style="margin-left: -5px;">
    					<select class="form-control">
@@ -22,7 +22,7 @@
 					  <option>5</option>
 					</select>
   					</div>
-					</div>
+					</div> -->
 				</form>
 </div>
 <div class="row" style="padding-left: 28px;margin-top: 110px;" >
@@ -39,7 +39,7 @@
 	    		
 	    	</tr>
 	    	<tbody>
-	    	<tr ng-repeat="details in ctrl.DonorsList | filter:SearchText">
+	    	<tr dir-paginate="details in ctrl.DonorsList | filter:SearchText|itemsPerPage:8">
 	    		<!-- <td>{{details.registrationUserid}}</td> -->
 	    		<td ng-show="!ctrl.edit[details.donorId]">{{details.donorName}}</td>
 	    		<td ng-show="!ctrl.edit[details.donorId]">{{details.donorPhoneNumber}}</td>
@@ -47,27 +47,21 @@
 	    		<td ng-show="!ctrl.edit[details.donorId]">Rs.1111</td>
 	    		<td ng-show="!ctrl.edit[details.donorId]">{{details.donorStatus}}</td>
 	    		<td ng-show="!ctrl.edit[details.donorId]">
-	    			<a href="#!ViewDonor"><button type="button" class="btn btn-warning" id ="view"  ng-click="ctrl.selectContact($index)">View Details</button></a>
+	    			<a href="#!ViewDonor"><button type="button" class="btn btn-warning" id ="view"  ng-click="ctrl.selectContact($index)"><i class="glyphicon glyphicon-eye-open" style="color:#000000;"></i>&nbsp; View</button></a>
 					<!-- <a href="#!EditDonor"><button class="btn btn-primary" ng-click=" ctrl.edit[details.donorId] = !ctrl.edit[details.donorId]" >Edit</button></a> -->
 					
 				</td>
-	    		<!-- <td ng-show="ctrl.edit[details.donorId]">{{details.donorName}}</td>
-	    		<td ng-show="ctrl.edit[details.donorId]">{{details.donorPhoneNumber}}</td>
-	    		<td ng-show="ctrl.edit[details.donorId]">{{details.donorEmail}}</td>
-	    		<td ng-show="ctrl.edit[details.donorId]">Rs.1111</td>
-	    		<td ng-show="ctrl.edit[details.donorId]" >
-	    		<select class="form-control">
-	    			<option >{{details.donorStatus}}</option>
-	    			<option >In-Active</option>
-	    		</select>
-	    		</td>
-	    		<td ng-show="ctrl.edit[details.donorId]">
-	    			<button class="btn btn-success" ng-click="ctrl.update(details);ctrl.edit[details.donorId] = !ctrl.edit[details.donorId]" >Save</button>
-						<button class="btn btn-default" ng-click=" ctrl.edit[details.donorId] = !ctrl.edit[details.donorId]" >Undo</button>
-	    		</td>
-									</tr> -->
+			    <dir-pagination-controls
+       max-size="100"
+       direction-links="true"
+       boundary-links="true" >
+    </dir-pagination-controls>
+			</tr>
+
+			</tbody>
 				  			    	
 				  </table>
+		  			
 		  			
 		  		</div>
 						

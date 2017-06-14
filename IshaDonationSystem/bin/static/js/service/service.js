@@ -68,16 +68,15 @@ myApp.factory("localService",['$http','$log','$q',function($http,$log,$q){
 		var deferred = $q.defer();
 		$log.log(id);
 		$log.log(selectedContact);
-/*		$log.log(donor_info.donorId);
-		var id=donor_info.donorId;*/
 		var url= "http://localhost:8080/updatedonor";
 		
-		$http.put(url,id,selectedContact)
+		$http.put("http://localhost:8080/updatedonor/",id,selectedContact)
 		.then(function(response){
 			$log.log("-----Successfully updated----");	
 			return response.data
 		},function(ErrorResponse){
-			 $log.log("Error ");
+			 $log.log(ErrorResponse);
+			 $log.error(ErrorResponse);
 			 deferred.reject(ErrorResponse);
 		})
 		 return deferred.promise;
@@ -88,6 +87,7 @@ myApp.factory("localService",['$http','$log','$q',function($http,$log,$q){
 		 $http.put('http://localhost:8080/login',logs)
 		 .then(function(SuccessResponse){
 			 $log.log("-----Successfully loged in-----");
+			 deferred.resolve(SuccessResponse);
 		 },function(ErrorResponse){
 			 $log.log("Error while logging-In");
 			 deferred.reject(ErrorResponse);

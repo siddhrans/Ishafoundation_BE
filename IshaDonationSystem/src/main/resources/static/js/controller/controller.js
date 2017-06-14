@@ -1,6 +1,6 @@
 'use strict';
-var myApp = angular.module("loginApp",['ngRoute']);
-myApp.controller("loginController",['$log','$scope','localService','$http',function($log,$scope,localService,$http){
+var myApp = angular.module("loginApp",['ngRoute','ngResource','angularUtils.directives.dirPagination']);
+myApp.controller("loginController",['$log','$scope','localService','$http','$resource','$window',function($log,$scope,localService,$http,$resource,$window){
 	$log.log("------------Controller-----------");
 	
 	
@@ -25,6 +25,7 @@ myApp.controller("loginController",['$log','$scope','localService','$http',funct
 	/*var url='http://localhost:6512/donor1/';*/
 	self.editUser = {};
 	self.logs={phoneNo:'',password:''};
+	var today = new Date();
 /*	self.logedUser=[];*/
 
 	/* drop down validation */	
@@ -112,15 +113,16 @@ myApp.controller("loginController",['$log','$scope','localService','$http',funct
 	
 	self.createDonor =  function createDonor() {
         console.log('create donor');
-        
+       
         console.log(self.donor_info);
         localService.createDonor(self.donor_info)
             .then(
                 function (response) {
                     console.log('donor created successfully');
                     self.successMessage = 'donor created successfully';
-                    alert('Donor Created successfully')
+                    alert('Donor Created successfully');
                     window.location.href="#!SuccessPage";
+                    self.reload();
                     self.errorMessage='';
                     self.done = true;
                  /*   self.user={};*/
@@ -134,15 +136,38 @@ myApp.controller("loginController",['$log','$scope','localService','$http',funct
                 }
             );
     };
-     self.update = function update(selectedContact,id){
-    	 selectedContact = self.selectedContact;
-    	 id=self.selectedContact.donorId;
-    	 localService.update(id,selectedContact)
-    	 .then(function(d){
-    		 self.DonorsList = d; 
-    	 },function(errResponse){
-    		 $log.log("Error loging in controller");
-    	 });    	 
+     self.update = function update(id){
+    	var   List = $resource("http://localhost:8080/updatedonor/:id",{},{save:{method:'PUT',params:{id:'@id'}}});
+    	 //var index = self.DonorsList[index];
+    	 var donors = {};
+    	 donors.donorName = self.selectedContact.donorName;
+    	 donors.donorPhoneNumber=self.selectedContact.donorPhoneNumber;
+    	 donors.donorEmail=self.selectedContact.donorEmail;
+    	 donors.donorRefName1=self.selectedContact.donorRefName1;
+    	 donors.donorRefName2=self.selectedContact.donorRefName2;
+    	 donors.donorRegion=self.selectedContact.donorRegion;
+    	 donors.donorState=self.selectedContact.donorState;
+    	 donors.donorCity=self.selectedContact.donorCity;
+    	 donors.donorcenter=self.selectedContact.donorcenter;
+    	 donors.bankAccountholderName=self.selectedContact.bankAccountholderName;
+    	 donors.bankName=self.selectedContact.bankName;
+    	 donors.bankBranch=self.selectedContact.bankBranch;
+    	 donors.bankAccountNumber=self.selectedContact.bankAccountNumber;
+    	 donors.bankMICR=self.selectedContact.bankMICR;
+    	 donors.bankIfscCode=self.selectedContact.bankIfscCode;
+    	 donors.bankAccountType=self.selectedContact.bankAccountType;
+    	 donors.bankUMRN=self.selectedContact.bankUMRN;
+    	 donors.donationStartDate=self.selectedContact.donationStartDate;	 
+    	 donors.donationEndDate=self.selectedContact.donationEndDate;
+    	 donors.donationFrequency=self.selectedContact.donationFrequency;
+/*    	 donors.createdonordate=self.selectedContact.createdonordate;
+    	 donors.creatorName=self.selectedContact.creatorName;*/
+    	 donors.donorComments=self.selectedContact.donorComments;
+/*    	 donors.createdonordate = today.getDate();*/
+    	 donors.creatorName = "sharath";
+    	 self.DonorsList[self.selectedContact] = donors;
+    	 List.save({id:self.selectedContact.donorId},donors);
+    	 $log.log("successfully saved"); 
      };
      
 	self.edit = function edit(id){
@@ -156,6 +181,9 @@ myApp.controller("loginController",['$log','$scope','localService','$http',funct
 	}
 	self.selectContact = function(index){
 		self.selectedContact = self.DonorsList[index];
+		/*$log.log( self.selectedContact);*/
+		self.StartDate = new Date(self.selectedContact.donationStartDate);
+		self.EndDate = new Date(self.selectedContact.donationEndDate);
 	}
 	
 	self.login=function login(){
@@ -169,6 +197,10 @@ myApp.controller("loginController",['$log','$scope','localService','$http',funct
 			alert("Unable to log-in");
 		});
 		
+	}
+	self.reload = function reload(){
+		$log.log("page is loading");
+		$window.location.reload();
 	}
 	
 	
@@ -196,5 +228,11 @@ myApp.config(function($routeProvider){
 	})
 	.when("/EditDonor",{
 		templateUrl : "EditDonor.html"
+	})
+	.when("/BulkDonor",{
+		templateUrl : "BulkDonor.html"
+	})
+	.when("/Reports",{
+		templateUrl : "Reports.html"
 	})
 });

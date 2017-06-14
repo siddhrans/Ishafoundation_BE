@@ -62,11 +62,7 @@
 	background:#FF7F24;
 	box-shadow:none;
 }
-input[type="text"]:focus{
-		outline:none;
-	box-shadow:none;
-	border-bottom:2px solid #ffffff;
-}
+
 input[type="email"]:focus{
 		outline:none;
 	box-shadow:none;
@@ -99,12 +95,10 @@ select{
 	background:#FF7F24;
 	box-shadow:none;
 } */
+input[type="text"]{
+	background:#fff;
+}
+
 input[type="text"]::placeholder{
-	color:white;
-}
-input[type="email"]::placeholder{
-  color: #ffffff;
-}
-input[type="password"]::placeholder{
-  color: #ffffff;
+	color:#000000;
 }

@@ -426,12 +426,15 @@ font-size: 23px;
 }
 
 #viewOuter{
-	background:#ffffff;
-	    margin-top:83px;
+    width: 90%;
+    margin-top: 76px;
+    margin-left: 60px;
+        border: 1px solid #CDC9A5;
+    box-shadow: 1px 2px 8px 3px #CDC9A5;
 }
 #viewOuter ul{
 	list-style:none;
-	background:#838B8B;
+	background:rgba(255, 152, 0, 0.48);
 	border-bottom: 2px solid #CD5B45;
 }
 #viewOuter ul li{
@@ -444,7 +447,8 @@ font-size: 23px;
     padding-top: 15px;
 }
 #viewOuter ul li a{
-	color:#FCFFF0;
+	color:teal;
+	font-family:Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
 }
 #viewOuter ul li a:hover{
 		text-decoration:none;
@@ -464,7 +468,8 @@ font-size: 23px;
 	display:none;
 }
 #viewDetails{
-	background:#F5F5F5;
+	padding-top: 5px;
+	margin-bottom: 70px;
 }
 #editButton{
 	float: right;
@@ -474,4 +479,58 @@ font-size: 23px;
 	    float: right;
     padding-right: 43px;
 }
+#per{
+	background:#ffffff;
+	border: 1px solid #CDC9A5;
+    box-shadow: 1px 2px 8px 3px #CDC9A5;
+}
+#crtdonor{
+    margin-top: 30px;
+    margin-left: 91px;
+    border: 1px solid #CDC9A5;
+    box-shadow: 1px 2px 8px 3px #CDC9A5;
+}
+#ddd h3{
+		padding-top: 5px;
+    font-size: 30px;
+    font-family: Copperplate, "Copperplate Gothic Light", fantasy;
+    font-weight: 600;
+    color: #5C4033;
+}
+#donorHeader h4{
+	padding-top: 33px;
+    padding-left: 30px;
+    font-size: 33px;
+    font-family: Copperplate, "Copperplate Gothic Light", fantasy;
+    font-weight: 600;
+    color: #5C4033;
+}
+#detailsPage h4{
+	padding-top: 33px;
+    padding-left: 30px;
+    font-size: 33px;
+    font-family: Copperplate, "Copperplate Gothic Light", fantasy;
+    font-weight: 600;
+    color: #5C4033;
+}
+#mBody p{
+	padding-left: 112px;
+    padding-top: 60px;
+    color: yellowgreen;
+    font-family: Georgia, Times, "Times New Roman", serif;
+    font-size: 35px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    line-height: 15.4px;
+	
+}
+.pagination{
+	display: inline-block;
+    padding-left: 350px;
+    margin: 20px 0;
+    border-radius: 4px;
+    position: absolute;
+    margin-top: 480px;}
+
 /*End of create donor*/
