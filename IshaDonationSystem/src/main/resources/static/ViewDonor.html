@@ -3,7 +3,7 @@
 </div>
 <div id="viewDetails">
 <div id="editButton" ng-show="!ctrl.edit[details.donorId]">
-	<button class="btn btn-default btn-lg" ng-click=" ctrl.edit[details.donorId] = !ctrl.edit[details.donorId]">Edit</button>
+	<button class="btn btn-primary btn-lg" ng-click=" ctrl.edit[details.donorId] = !ctrl.edit[details.donorId]"><i class="glyphicon glyphicon-pencil"></i>&nbsp;Edit</button>
 </div>
 <div class="form-group col-sm-2" id="status"  ng-show="ctrl.edit[details.donorId]">
 	<label>Status</label>
@@ -63,8 +63,7 @@
 		      					 <p ng-show="!ctrl.edit[details.donorId]">{{ctrl.selectedContact.donorRefName2}}</p>
 		      					 <p ng-show="ctrl.edit[details.donorId]"><input type="text" class="form-control" name="Rname2" placeholder="Donor Refernce Name2" aria-describedby="sizing-addon1" ng-model="ctrl.selectedContact.donorRefName2"> </p>
 		    				</div>
-		  			</div>
-				
+		  			</div>				
 				</div> 
 				<div class="col-md-6">
 					<div class="form-group">
@@ -129,20 +128,9 @@
 		                       </select></p>
 		    				</div>
 		  			</div>
-		  			
-				
-				
 				</div>
-				
-				
 				</div>
-
-				
-
-	
-	  			
 	  		</form>
-		
 		</div>	
 		
 		<div id="Bank" style="background:#ffffff">
@@ -213,14 +201,14 @@
 		  			</div>
 
 		  			<div class="form-group">
-		    			<label class="col-sm-4 control-label">bankUtilityCode</label>
+		    			<label class="col-sm-4 control-label">BankUtilityCode</label>
 		    				<div class="col-sm-4">
 		      					 <!-- <p ng-show="!ctrl.edit[details.donorId]">{{ctrl.selectedContact.bankUtilityCode}}</p> -->
 		      					 {{ctrl.selectedContact.bankUtilityCode}}
 		    				</div>
 		  			</div>
 		  			<div class="form-group">
-		    			<label class="col-sm-4 control-label">debitType</label>
+		    			<label class="col-sm-4 control-label">DebitType</label>
 		    				<div class="col-sm-4">
 		      		<!-- <p ng-show="!ctrl.edit[details.donorId]">{{ctrl.selectedContact.donationDebitType}} </p> -->
 		      		{{ctrl.selectedContact.donationDebitType}}
@@ -292,25 +280,19 @@
 						          <button type="button" class="close" data-dismiss="modal">&times;</button>
 						        </div>
 						        <div class="modal-body" id="mBody">
+						        <p>&#9786;</p>
 						          <p>SuccessFully Updated</p>
 						        </div>
-						        <div class="modal-footer">
+						        <!-- <div class="modal-footer">
         							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      							</div>
-
+      							</div> -->
 						      </div>
-						      
 						    </div>
 						  </div>
-		  			
 		  			</p>
-		  			
 	  		</form>
-		
 		</div>	
-		
 	</div>
-
 </div>
 
 
@@ -335,6 +317,7 @@ $("document").ready(function(){
     	$('#Payment').hide();
     	$('#Bank_d').removeClass('act');
     	$('#Payment_d').removeClass('act');
+    	
     });
     $('#Payment_d').click(function(e){
     	e.preventDefault();

@@ -434,8 +434,8 @@ font-size: 23px;
 }
 #viewOuter ul{
 	list-style:none;
-	background:rgba(255, 152, 0, 0.48);
-	border-bottom: 2px solid #CD5B45;
+	background:rgba(249, 142, 43, 1);
+	border-bottom: 2px solid slategray;
 }
 #viewOuter ul li{
 	    display: inline-block;
@@ -447,8 +447,9 @@ font-size: 23px;
     padding-top: 15px;
 }
 #viewOuter ul li a{
-	color:teal;
-	font-family:Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+    color: #ffffff;
+    font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+    font-size: 16px;
 }
 #viewOuter ul li a:hover{
 		text-decoration:none;
@@ -495,7 +496,7 @@ font-size: 23px;
     font-size: 30px;
     font-family: Copperplate, "Copperplate Gothic Light", fantasy;
     font-weight: 600;
-    color: #5C4033;
+    color: #000000;
 }
 #donorHeader h4{
 	padding-top: 33px;
@@ -503,7 +504,7 @@ font-size: 23px;
     font-size: 33px;
     font-family: Copperplate, "Copperplate Gothic Light", fantasy;
     font-weight: 600;
-    color: #5C4033;
+    color: #000000;
 }
 #detailsPage h4{
 	padding-top: 33px;
@@ -511,7 +512,7 @@ font-size: 23px;
     font-size: 33px;
     font-family: Copperplate, "Copperplate Gothic Light", fantasy;
     font-weight: 600;
-    color: #5C4033;
+    color: #000000;
 }
 #mBody p{
 	padding-left: 112px;
@@ -531,6 +532,13 @@ font-size: 23px;
     margin: 20px 0;
     border-radius: 4px;
     position: absolute;
-    margin-top: 480px;}
-
+    margin-top: 480px;
+}
+#tableTr {
+	background:rgba(249, 142, 43, 1);
+	
+}
+#tableTr th{
+	color:#ffffff;
+}
 /*End of create donor*/
