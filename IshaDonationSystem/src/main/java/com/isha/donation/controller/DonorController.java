@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.isha.donation.entity.CompositeId;
 import com.isha.donation.entity.Donor;
 import com.isha.donation.Service.DonorService;
 import com.isha.donation.utils.Utils;
@@ -23,6 +25,9 @@ import com.isha.donation.utils.Utils;
 @Controller
 public class DonorController {
 
+	@Autowired
+	 CompositeId compositeId;
+	
     @Autowired
     private DonorService mdonorService;
     private Utils mUtils = new Utils();
@@ -41,12 +46,14 @@ public class DonorController {
         @SuppressWarnings("unused")
 		String donorId = "";
         try {
-        	
-         System.out.println(donor);
+        	System.out.println(donor);
+       
             donor.setCreateDonordate(mUtils.getCurrentTime());
-            donor.setDonorComments(donor.getCreatorName());
+            System.out.println(compositeId.generate());
+            donor.setTppsConsumerCode(compositeId.generate());
+           // donor.setDonorComments(donor.getCreatorName());
           Donor donortemp=  mdonorService.save(donor);
-          
+         
            donorId = String.valueOf(donor.getDonorId());
             
         } catch (Exception ex) {

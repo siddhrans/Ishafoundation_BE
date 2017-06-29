@@ -1,5 +1,6 @@
 package com.isha.donation.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,9 +12,11 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "donordetails")
-public class Donor {
+public class Donor implements Serializable{
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -69,7 +72,7 @@ public class Donor {
         this.email = email;
     }
 
-    @Column(name = "Donor_Reference_Name_1")
+   /* @Column(name = "Donor_Reference_Name_1")
     private String refName1;
 
     public String getDonorRefName1() {
@@ -90,7 +93,7 @@ public class Donor {
     public void setDonorRefName2(String refName2) {
         this.refName2 = refName2;
     }
-
+*/
     @Column(name = "Donor_Status")
     private String status="Active";
 
@@ -153,11 +156,23 @@ public class Donor {
         return bankAccountholderName;
     }
 
+    
     public void setBankAccountholderName(String bankAccountholderName) {
         this.bankAccountholderName = bankAccountholderName;
     }
 
-    @Column(name = "Bank_Name")
+    @Column(name="Amount",nullable=false)
+    private double amount;
+    
+    public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	@Column(name = "Bank_Name")
     private String bankName;
 
     public String getBankName() {
@@ -223,18 +238,18 @@ public class Donor {
         this.bankAccountType = bankAccountType;
     }
 
-    @Column(name = "Bank_UMRN")
-    private String bankUMRN;
+  /*  @Column(name = "Bank_UMRN")
+    private String bankUMRN;*/
 
-    public String getbankUMRN() {
+   /* public String getbankUMRN() {
         return bankUMRN;
     }
 
     public void setbankUMRN(String bankUMRN) {
         this.bankUMRN = bankUMRN;
-    }
+    }*/
 
-    @Column(name = "Bank_Sponsor_Cd")
+   /* @Column(name = "Bank_Sponsor_Cd")
     private String bankSponsorCode;
 
     public String getbankSponsorCode() {
@@ -243,9 +258,9 @@ public class Donor {
 
     public void setbankSponsorCode(String bankSponsorCode) {
         this.bankSponsorCode = bankSponsorCode;
-    }
+    }*/
 
-    @Column(name = "Bank_Utility_Cd")
+   /* @Column(name = "Bank_Utility_Cd")
     private String bankUtilityCode;
 
     public String getBankUtilityCode() {
@@ -255,7 +270,7 @@ public class Donor {
     public void setBankUtilityCode(String bankUtilityCode) {
         this.bankUtilityCode = bankUtilityCode;
     }
-
+*/
     @Temporal(TemporalType.DATE)
     @Column(name = "Donation_Start_Dt", nullable = false)
     private Date startDate;
@@ -291,7 +306,7 @@ public class Donor {
         this.frequency = frequency;
     }
 
-    @Column(name = "Donation_Debit_Type")
+   /* @Column(name = "Donation_Debit_Type")
     private String debitType;
 
     public String getDonationDebitType() {
@@ -300,8 +315,9 @@ public class Donor {
 
     public void setDonationDebitType(String debitType) {
         this.debitType = debitType;
-    }
+    }*/
 
+    
     @Column(name = "TPPS_Consumer_Code")
     private String TPPSConsumerCode;
 
@@ -324,7 +340,7 @@ public class Donor {
         this.createDate = createDate;
     }
 
-    @Column(name = "Create_By", nullable = false)
+   /* @Column(name = "Create_By", nullable = false)
     private String createdBy;
 
     public String getCreatorName() {
@@ -333,9 +349,9 @@ public class Donor {
 
     public void setCreatorName(String createdBy) {
         this.createdBy = createdBy;
-    }
+    }*/
 
-    @Column(name = "Update_Dt")
+    /*@Column(name = "Update_Dt")
     private String updateDate;
 
     public String getDonorUpdatedDate() {
@@ -344,9 +360,9 @@ public class Donor {
 
     public void setDonorUpdatedDate(String updateDate) {
         this.updateDate = updateDate;
-    }
+    }*/
 
-    @Column(name = "Update_By")
+   /* @Column(name = "Update_By")
     private String updatedBy;
 
     public String getUpdaterName() {
@@ -356,7 +372,7 @@ public class Donor {
     public void setUpdaterName(String updatedBy) {
         this.updatedBy = updatedBy;
     }
-
+*/
     @Column(name = "Update_Comments")
     private String comments;
 
@@ -371,16 +387,19 @@ public class Donor {
 	@Override
 	public String toString() {
 		return "Donor [id=" + id + ", mobileNumber=" + mobileNumber + ", name=" + name + ", email=" + email
-				+ ", refName1=" + refName1 + ", refName2=" + refName2 + ", status=" + status + ", region=" + region
-				+ ", state=" + state + ", city=" + city + ", center=" + center + ", bankAccountholderName="
-				+ bankAccountholderName + ", bankName=" + bankName + ", branchName=" + branchName
-				+ ", bankAccountNumber=" + bankAccountNumber + ", bankMICR=" + bankMICR + ", bankIfscCode="
-				+ bankIfscCode + ", bankAccountType=" + bankAccountType + ", bankUMRN=" + bankUMRN
-				+ ", bankSponsorCode=" + bankSponsorCode + ", bankUtilityCode=" + bankUtilityCode + ", startDate="
-				+ startDate + ", endDate=" + endDate + ", frequency=" + frequency + ", debitType=" + debitType
-				+ ", TPPSConsumerCode=" + TPPSConsumerCode + ", createDate=" + createDate + ", createdBy=" + createdBy
-				+ ", updateDate=" + updateDate + ", updatedBy=" + updatedBy + ", comments=" + comments + "]";
+				+ ", status=" + status + ", region=" + region + ", state=" + state + ", city=" + city + ", center="
+				+ center + ", bankAccountholderName=" + bankAccountholderName + ", amount=" + amount + ", bankName="
+				+ bankName + ", branchName=" + branchName + ", bankAccountNumber=" + bankAccountNumber + ", bankMICR="
+				+ bankMICR + ", bankIfscCode=" + bankIfscCode + ", bankAccountType=" + bankAccountType + ", startDate="
+				+ startDate + ", endDate=" + endDate + ", frequency=" + frequency + ", TPPSConsumerCode="
+				+ TPPSConsumerCode + ", createDate=" + createDate + ", comments=" + comments + "]";
 	}
+
+	 
+
+	 
+
+	 
     
     
 }

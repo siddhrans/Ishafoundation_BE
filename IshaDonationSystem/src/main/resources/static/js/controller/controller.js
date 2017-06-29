@@ -8,9 +8,9 @@ myApp.controller("loginController",['$log','$scope','localService','$http','$res
 	self.registerData = {userName:'',name:'',email:'',
 			phoneNo:'',password:'',confirmPassword:''};
 	
-	self.donor_info={donorName:"",donorPhoneNumber:"",donorEmail:"",donorRefName1:"",donorRefName2:"",donorRegion:"",donorState:"",donorCity:"",donorcenter:"",bankAccountholderName:"",
-	         bankName:"",bankBranch:"",bankAccountNumber:"",bankMICR:"",bankIfscCode:"",bankAccountType:"",bankUMRN:"",donationStartDate:"",
-	         donationEndDate:"",donationFrequency:"",createdonordate:"",creatorName:"",donorComments:""};
+	self.donor_info={donorName:"",donorPhoneNumber:"",donorEmail:"",donorRegion:"",donorState:"",donorCity:"",donorcenter:"",bankAccountholderName:"",
+	         bankName:"",bankBranch:"",bankAccountNumber:"",bankMICR:"",bankIfscCode:"",bankAccountType:"",donationStartDate:"",
+	         donationEndDate:"",donationFrequency:"",donorComments:"",amount:""};
 	
 	
 	
@@ -121,8 +121,8 @@ myApp.controller("loginController",['$log','$scope','localService','$http','$res
                     console.log('donor created successfully');
                     self.successMessage = 'donor created successfully';
                     alert('Donor Created successfully');
-                    window.location.href="#!SuccessPage";
-                    self.reload();
+                    window.location.href="#!SuccessPage"; 
+                    self.reload(); 
                     self.errorMessage='';
                     self.done = true;
                  /*   self.user={};*/
@@ -136,15 +136,15 @@ myApp.controller("loginController",['$log','$scope','localService','$http','$res
                 }
             );
     };
-     self.update = function update(id){
+    self.update = function update(id){
     	var   List = $resource("http://localhost:8080/updatedonor/:id",{},{save:{method:'PUT',params:{id:'@id'}}});
     	 //var index = self.DonorsList[index];
     	 var donors = {};
     	 donors.donorName = self.selectedContact.donorName;
     	 donors.donorPhoneNumber=self.selectedContact.donorPhoneNumber;
     	 donors.donorEmail=self.selectedContact.donorEmail;
-    	 donors.donorRefName1=self.selectedContact.donorRefName1;
-    	 donors.donorRefName2=self.selectedContact.donorRefName2;
+    	/* donors.donorRefName1=self.selectedContact.donorRefName1;
+    	 donors.donorRefName2=self.selectedContact.donorRefName2;*/
     	 donors.donorRegion=self.selectedContact.donorRegion;
     	 donors.donorState=self.selectedContact.donorState;
     	 donors.donorCity=self.selectedContact.donorCity;
@@ -156,15 +156,14 @@ myApp.controller("loginController",['$log','$scope','localService','$http','$res
     	 donors.bankMICR=self.selectedContact.bankMICR;
     	 donors.bankIfscCode=self.selectedContact.bankIfscCode;
     	 donors.bankAccountType=self.selectedContact.bankAccountType;
-    	 donors.bankUMRN=self.selectedContact.bankUMRN;
     	 donors.donationStartDate=self.selectedContact.donationStartDate;	 
     	 donors.donationEndDate=self.selectedContact.donationEndDate;
     	 donors.donationFrequency=self.selectedContact.donationFrequency;
-/*    	 donors.createdonordate=self.selectedContact.createdonordate;
-    	 donors.creatorName=self.selectedContact.creatorName;*/
+/*    	 donors.createdonordate=self.selectedContact.createdonordate; */
+    	 donors.amount=self.selectedContact.amount;
     	 donors.donorComments=self.selectedContact.donorComments;
-/*    	 donors.createdonordate = today.getDate();*/
-    	 donors.creatorName = "sharath";
+/*    	 donors.createdonordate = today.getDate();
+  	     donors.creatorName = "sharath"; */
     	 self.DonorsList[self.selectedContact] = donors;
     	 List.save({id:self.selectedContact.donorId},donors);
     	 $log.log("successfully saved"); 
@@ -179,8 +178,10 @@ myApp.controller("loginController",['$log','$scope','localService','$http','$res
 			}
 		}
 	}
-	self.selectContact = function(index){
-		self.selectedContact = self.DonorsList[index];
+	self.selectContact = function(donorId){
+		console.log('index block');
+		console.log(donorId);
+		self.selectedContact = self.DonorsList[donorId];
 		/*$log.log( self.selectedContact);*/
 		self.StartDate = new Date(self.selectedContact.donationStartDate);
 		self.EndDate = new Date(self.selectedContact.donationEndDate);
