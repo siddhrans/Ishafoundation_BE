@@ -5,13 +5,15 @@
 <div class="col-md-10">
       <div class="layout">
         <ul>
-         <li id="personal"><a href="#PersonalInformation">Personal information</a></li>
+         <li id="personal"><a href="#PersonalInformation" >Personal information</a></li>
          <li id="bank"><a href="#BankDetails">Bank Details</a></li>
          <li id="payment"><a href="#PaymentDetails">Payment Details</a></li>
-          </ul><br>
+       </ul><br>
        <div class="tabcontent">
-       <form name="create" ng-submit="ctrl.createDonor();">
+       <form name="create" ng-submit="ctrl.createDonor();" id="donorCount">
          <div id="PersonalInformation">
+          <div class="col-md-12">
+            <div class="col-md-6">
             <label>Name</label>
                 <div class="input-group input-group-md">
 					<span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-user"></span></span>
@@ -46,7 +48,7 @@
 	                  <input type="text" class="form-control"  placeholder="Address" aria-describedby="sizing-addon1" ng-model="dono.donor_info.donorAddress">
 				</div> <br>  -->
 				
-  		<!--	<label>Donor Reference Name1</label>	
+			<label>Donor Reference Name1</label>	
 			    <div class="input-group input-group-md">
 					<span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-user"></span></span>
 					<input type="text" class="form-control" name="Rname1" placeholder="Donor Reference Name1" aria-describedby="sizing-addon1" ng-model="ctrl.donor_info.donorRefName1">
@@ -57,14 +59,14 @@
 					<span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-user"></span></span>
 					<input type="text" class="form-control" name="Rname2" placeholder="Donor Reference Name2" aria-describedby="sizing-addon1" ng-model="ctrl.donor_info.donorRefName2">
 		
-				</div> <br>  	-->
+				</div> <br>  	
  
-           
-           
+           </div>
+           <div class="col-md-6">
            <label>Region</label>
               		<div class="input-group input-group-md">
 						<span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-asterisk"></span></span>
-						<select class="form-control" name="region" ng-model="ctrl.donor_info.donorRegion">
+						<select class="form-control" name="region" ng-model="ctrl.donor_info.donorRegion" required>
 	                      	<option value="" disabled>--Region--</option>    
 	                        <option>Andhra Pradesh</option>
 	                        <option>Telangana</option>
@@ -82,7 +84,7 @@
 		                        <option>Vizag</option>
 		                      </select>
 	                   </div> <br>
-	                <label>State</label>
+	                <label>Name</label>
 	                 <div class="input-group input-group-md">
 	                  <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-bookmark"></span></span>
 	                      <!-- <input type="text" class="form-control"  placeholder="First Name" aria-describedby="sizing-addon1"> -->
@@ -97,7 +99,7 @@
                  <div class="input-group input-group-md">
                   <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-check"></span></span>
                       <!--  <input type="text" class="form-control"  placeholder="First Name" aria-describedby="sizing-addon1"> --> 
-                      <select class="form-control"  ng-model="ctrl.donor_info.donorCenter">
+                      <select class="form-control"  ng-model="ctrl.donor_info.donorcenter">
                       	<option value="" disabled>--Center--</option>    
                         <option>Madhapur</option>
                         <option>Kukatpally</option>
@@ -109,14 +111,14 @@
                         <option>Vizag</option> 
                        </select>
                    </div><br> 
-              
+               </div>
            </div>
            
              <!-- <ul>
                  <li id="bank"><a href="#BankDetails"><span class="glyphicon glyphicon-chevron-right"></span></a></li> 
                  <li id="bank"><a href="#BankDetails"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
              </ul>-->
-            
+              </div>
           <div id="BankDetails">
           <label>Account Holder Name</label>
             <div class="input-group input-group-md">
@@ -217,17 +219,44 @@
 	                                             <span style="color:red" ng-show="create.startdate.$error.invalidDate || create.enddate.$error.invalidDate">Check dates for validity</span>
 	                                             <span style="color:red" ng-show="create.enddate.$error.required && create.enddate.$dirty">End date is Required</span>
 	        </div>  -->
-	  <label>Amount</label>
-	  	<div class="input-group input-group-md">
+			
+		<!--  	<div class="input-group input-group-md">
 				<span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-usd"></span></span>
-				<input type="text" class="form-control" name="amount" placeholder="Amount in Rupees" aria-describedby="sizing-addon1" ng-model="ctrl.donor_info.amount" required ng-pattern="/^\d+([,.]\d+)?$/" ng-maxlength="13">
+				<input type="text" class="form-control" name="amount" placeholder="Amount in Rupees" aria-describedby="sizing-addon1" ng-model="dono.donor_info.paymentDetailsAmountInRs" required ng-pattern="/^\d+([,.]\d+)?$/" ng-maxlength="13">
 			    <span style="color:red" ng-show="create.amount.$dirty && create.amount.$error.pattern">It should be numbers</span><br>
                          <span style="color:red" ng-show="create.amount.$dirty && create.amount.$error.maxlength">It is too long</span>
+			</div> <br>-->
+<!-- 			<label>Create Date</label>
+			<div class="input-group input-group-md">
+				<span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-th-list"></span></span>
+				<input type="date" class="form-control" placeholder="Create Date" aria-describedby="sizing-addon1" ng-model="ctrl.donor_info.createDonordate" required min="{{date | date:'yyyy-MM-dd'}}">
+			</div> <br> -->
+			
+<!-- 			<div class="input-group input-group-md">
+				<span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-th-list"></span></span>
+				<input type="text" class="form-control" placeholder="Create By" aria-describedby="sizing-addon1" ng-model="ctrl.donor_info.creatorName">
+			</div> <br> -->
+			
+			<label>Create Date</label>
+			<div class="input-group input-group-md">
+				<span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-th-list"></span></span>
+				<input type="date" class="form-control" placeholder="Create Date" aria-describedby="sizing-addon1" ng-model="ctrl.donar_info.createDonardate" required min="{{date | date:'yyyy-MM-dd'}}">
 			</div> <br>
-            <label>Comments</label>	
-		<div class="form-group">
-		<textarea class="form-control" rows="3" columns="3" resize="none" ng-model="ctrl.donor_info.donorComments"></textarea>
-		</div>
+			
+		<label>Create By</label>	
+			<div class="input-group input-group-md">
+				<span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-th-list"></span></span>
+				<input type="text" class="form-control" placeholder="Create By" aria-describedby="sizing-addon1" ng-model="ctrl.donar_info.creatorName">
+			</div> <br>
+			 
+		<label>Comments</label>	
+		<div class="input-group input-group-md">
+	<!-- 	<input type="text" class="form-control" placeholder="comments" aria-describedby="sizing-addon1" ng-model="ctrl.donar_info.donorComments"></p> -->
+		 <textarea class="form-control" rows="3" columns="3" resize="none" id="comment"    ng-model="ctrl.donar_info.donorComments"></textarea>
+		 </div>
+		<!-- <textarea class="form-control" rows="3" columns="3" resize="none" ng-model="ctrl.donar_info.donorComments"></textarea> -->
+		<br>
+		 
 		
 		<label>Frequency</label>	
 			<div class="input-group input-group-md">
@@ -251,7 +280,6 @@
 			 <li class="previous"><a href="#PaymentDetails"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
 		 </ul> --> 
           </div>
-          </form>
           </div>
        </div>
     </div>

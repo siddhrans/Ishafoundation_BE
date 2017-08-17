@@ -34,8 +34,7 @@ body{
 
 #log-form{
 	margin-top:85px;
-	background:
-;
+	background:#FF7F24;
 }
 #login_form{
 	    margin-top: 40px;
@@ -245,7 +244,6 @@ font-size: 23px;
 	border:1px solid #ddd;
 	background:#fff;
 	text-align: center;
-	margin-left: 52px;
 }
 #tableList tr th{
 	    text-align: center;
@@ -428,9 +426,9 @@ font-size: 23px;
 }
 
 #viewOuter{
-    width: 55%;
-    margin-top: 19px;
-    margin-left: 183px;
+    width: 90%;
+    margin-top: 76px;
+    margin-left: 60px;
         border: 1px solid #CDC9A5;
     box-shadow: 1px 2px 8px 3px #CDC9A5;
 }
@@ -544,103 +542,3 @@ font-size: 23px;
 	color:#ffffff;
 }
 /*End of create donor*/
-/* dashboard*/
-.mainblock{
-	    /* background-image:url('../images/bg1.jpg');*/
-	    background-color:#F5DEB3;
-		height: 150px;
-		width: 100%;
-		padding-top: 15px;
-}
-
-.m1{
-       float: left;
-       margin-left: 115px;
-}
-.m2{
-	    float: left;
-	    margin-left: 184px;
-}
-.m3{
-	    float: left;
-	    margin-left:149px;
-}
-.mainblock i{
-	    font-size: 55px;
-	     color:#FF7F24;
-}
-.mainblock p{
-	    font-size: 20px;
-	    margin-top: 5px;
-	    position: relative;
-        margin-left: 3px;
-        color: #ffffff;
-}
-.miniblock i{
-	    font-size: 55px;
-	    color:#FF7F24;
-}
-.miniblock p{
-	    font-size: 20px;
-	    margin-top: 5px;
-	    position: relative;
-        margin-left: 9px;
-        color: #ffffff;
-}
-.mainblock h5{
-	    font-size: medium;
-        margin-top: -14px;
-        position: relative;
-        margin-left: -33px;
-        color: #000000;
-}
-.miniblock{
-	  background-color: #F5DEB3;
-	  height: 150px;
-	  width: 100%;
-	  padding-top: 15px;
-}
-
-.m4{
-	float:left;
-	margin-left: 222px;
-}
-.m5{
-	float:left;
-	margin-left: 285px;
-}
-.miniblock p{
-	    font-size: 20px;
-	    margin-top: 5px;
-	    position: relative;
-        margin-left: 12px;
-        color: white;
-}
-.miniblock h5{
-	    font-size: medium;
-        margin-top: -14px;
-        position: relative;
-        margin-left: -33px;
-        color: #000000;
-}
-#pgr{
-	    margin: 8px 0 10px;
-}
-#dsearch{
-	 width: 218px;
-    height: 45px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    margin-left: 128px;
-    margin-top: -15px;
-    background-color: white;
-    background-image: url('../images/search.png');
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
-}
-

@@ -1,7 +1,6 @@
 package com.isha.donation.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import com.isha.donation.entity.Donor;
@@ -10,7 +9,6 @@ import com.isha.donation.repository.IDonorRepository;
 @Service
 public class DonorService {
 
-	 
     @Autowired
     private IDonorRepository mDonorRepository;
 
@@ -26,6 +24,7 @@ public class DonorService {
         return mDonorRepository.save(donor);
     }
 
+    
     public void delete(Donor donor) {
         mDonorRepository.delete(donor);
         return;
@@ -36,7 +35,5 @@ public class DonorService {
     }
     
     
-    public Donor findByid(String TPPSConsumerCode){
-    	return mDonorRepository.findById(TPPSConsumerCode);
-    }
+    
 }

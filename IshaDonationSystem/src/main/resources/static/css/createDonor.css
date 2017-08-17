@@ -2,7 +2,7 @@
 .layout{
 /*     border-radius: 3px;
     border: 1px solid #FFFFE0; */
-    width: 677px;
+    width: 800px;
     height: 100%;
    /* background: #D3D3D3;*/
     box-shadow: 4px 3px 3px 3px #F0F3F4;
@@ -26,14 +26,14 @@
 	    margin-left: -39px;
 } */
 .layout ul li a{
-	color: #ffffff; 
+	color: #ffffff;
     font-size: 15px;
     text-decoration: none;
     font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
 }
 .layout ul li a:hover{
 	cursor:pointer;
-/*	background-color:#EEE8CD; */
+	background-color:#EEE8CD;
 }
 #BankDetails{
 	display:none;
