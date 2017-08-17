@@ -1,4 +1,4 @@
-'use strict';
+ 'use strict';
 myApp.factory("localService",['$http','$log','$q',function($http,$log,$q){
 	
 	var factory = {
@@ -6,7 +6,8 @@ myApp.factory("localService",['$http','$log','$q',function($http,$log,$q){
 			fetchDonors : fetchDonors,
 			createDonor: createDonor,
 			update : update,
-			login : login
+			login : login,
+			uploadFile : uploadFile
 	};
 	return factory;
 	
@@ -51,19 +52,42 @@ myApp.factory("localService",['$http','$log','$q',function($http,$log,$q){
 	     console.log('-------------------createDonor service--------------');
 	     console.log(donor_info);
 	     $http.put('http://localhost:8080/createdonor/',donor_info)
-	         .then(
-	             function (response) {
+	         .then(function (response) {
 	            	 console.log('response block');
 	            	 console.log(donor_info);
 	                 deferred.resolve(response.data);
-	             },
-	             function (errResponse) { 
+	             },function (errResponse) { 
 	                console.error('Error while creating Donor :');
 	                deferred.reject(errResponse);
-	             }
-	         );
+	             });
 	     return deferred.promise;
 	 };
+	 
+	 function uploadFile(file){
+		 console.log(file);
+		 
+			var uploadUrl = "http://localhost:8080/uploadxls";
+			var fd = new FormData();
+			
+			fd.append('file', file);
+			$http.post(uploadUrl, fd, {
+			  transformRequest: angular.identity,
+			  headers: { 'Content-Type': undefined }
+			
+			            })
+			          .then(function (response) {
+			   	            	 console.log('response block');
+			   	            	 //console.log(donor_info);
+			   	            	alert(' Error while uploading ');
+			   	            	
+			   	             },function (errResponse) { 
+			   	                console.log('file upload success');
+			   	             alert("file upload success");
+			   	              
+			   	             }); 
+			   	   
+	 };
+	 
 	function update(id,selectedContact){
 		var deferred = $q.defer();
 		$log.log(id);
@@ -93,6 +117,38 @@ myApp.factory("localService",['$http','$log','$q',function($http,$log,$q){
 			 deferred.reject(ErrorResponse);
 		 })
 		 return deferred.promise;
-	 }
+	 };
 
 }]);
+
+/*myApp.service('fileUpload', ['$http','$q', function ($http,$q) {
+	console.log(file);
+	var uploadUrl = "http://localhost:8080//uploadxls";
+	var fd = new FormData();
+	fd.append('file', file);
+	$http.post(uploadUrl, fd, {
+	  transformRequest: angular.identity,
+	  headers: { 'Content-Type': undefined }
+	
+	            })
+	  .success(function() {
+	  alert("file upload success");
+	            })
+	  .error(function() {
+	  alert("file upload failure");
+	            });
+	 
+}]); */
+    
+/*	this.post= function(uploadurl, data){
+console.log('controller');
+var fd = new FormData();
+console.log('------------');
+for(var file in data)
+	 fd.append(file, data[key]);
+ console.log(fd);
+$http.post(uploadurl,fd,{
+transformRequest: angular.identity,
+headers: {'Content-Type' : undefined }
+})
+};*/

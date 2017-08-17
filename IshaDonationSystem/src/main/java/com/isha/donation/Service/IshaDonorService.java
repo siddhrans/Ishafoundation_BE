@@ -6,8 +6,7 @@ import com.isha.donation.entity.Donor;
 import com.isha.donation.entity.UploadDonor;
 
 public interface IshaDonorService {
-
-	public List<Donor> findAllDonor(String status);
+public List<Donor> findAllDonor(String status);
 	
 	public void saveUploadedDonor(UploadDonor uploadonor);
 
@@ -16,5 +15,4 @@ public interface IshaDonorService {
 	public Donor findDonorMobile(String mobile);
 	
 	public UploadDonor findUploadDonorMobile(String mobile);
-	
 }

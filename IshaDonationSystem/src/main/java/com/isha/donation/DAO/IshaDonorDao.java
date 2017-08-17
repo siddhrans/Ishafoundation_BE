@@ -3,7 +3,6 @@ package com.isha.donation.DAO;
 import java.util.List;
 
 import com.isha.donation.entity.Donor;
-import com.isha.donation.entity.UploadDonor;
 
 public interface IshaDonorDao {
 
@@ -12,5 +11,4 @@ public interface IshaDonorDao {
 	public List<Donor> findDonorRemitance(String status);
 	
 	public Donor findDonorMobile(String mobile);
-	
 }

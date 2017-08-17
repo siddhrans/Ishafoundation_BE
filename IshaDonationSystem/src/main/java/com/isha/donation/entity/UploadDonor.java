@@ -1,4 +1,4 @@
- package com.isha.donation.entity;
+package com.isha.donation.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -13,7 +13,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "uploaddetails")
@@ -223,7 +222,6 @@ public class UploadDonor implements Serializable {
 	/*public String getDonorcenter() {
 		return center;
 	}
-
 	public void setDonorCenter(String center) {
 		this.center = center;
 	}*/

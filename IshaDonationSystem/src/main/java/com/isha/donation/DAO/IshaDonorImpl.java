@@ -11,43 +11,43 @@ import org.springframework.stereotype.Repository;
 
 import com.isha.donation.DAO.AbstractDao;
 import com.isha.donation.entity.Donor;
-import com.isha.donation.entity.UploadDonor;
 
-@Repository("ishaDonor")
-public class IshaDonorImpl extends AbstractDao<Long,Donor>  implements IshaDonorDao{
+ 
 	
-	
-	 @SuppressWarnings("unchecked")
-	@Override
-	public List<Donor> findAllDonor(String status) {
-		 Criteria criteria= createEntityCriteria();
-		 criteria.add(Restrictions.eq("status",status));
-		 //criteria.addOrder(Order.asc("type"));
+	@Repository("ishaDonor")
+	public class IshaDonorImpl extends AbstractDao<Long,Donor>  implements IshaDonorDao{
+
+		 @SuppressWarnings("unchecked")
+		@Override
+		public List<Donor> findAllDonor(String status) {
+			 Criteria criteria= createEntityCriteria();
+			 criteria.add(Restrictions.eq("status",status));
+			 //criteria.addOrder(Order.asc("type"));
+			 
+			return (List<Donor>)criteria.list();
+		}
 		 
-		return (List<Donor>)criteria.list();
+		 
+		 @SuppressWarnings("unchecked")
+		public List<Donor> findDonorRemitance(String status){
+			 
+			 Criteria criteria=createEntityCriteria();
+			 criteria.add(Restrictions.eq("status", status));
+			 criteria.add(Restrictions.gt("amount", 999999.0));
+			 
+			return (List<Donor>)criteria.list(); 
+		 }
+
+
+		@Override
+		public Donor findDonorMobile(String mobile) {
+			 Criteria criteria=createEntityCriteria();
+			 criteria.add(Restrictions.eq("mobileNumber", mobile));
+			Donor donor=(Donor)criteria.uniqueResult();
+			 
+			return  donor;
+		}
+		 
+		 
+
 	}
-	 
-	 
-	 @SuppressWarnings("unchecked")
-	public List<Donor> findDonorRemitance(String status){
-		 
-		 Criteria criteria=createEntityCriteria();
-		 criteria.add(Restrictions.eq("status", status));
-		 criteria.add(Restrictions.gt("amount", 999999.0));
-		 
-		return (List<Donor>)criteria.list(); 
-	 }
-
-
-	@Override
-	public Donor findDonorMobile(String mobile) {
-		 Criteria criteria=createEntityCriteria();
-		 criteria.add(Restrictions.eq("mobileNumber", mobile));
-		Donor donor=(Donor)criteria.uniqueResult();
-		 
-		return  donor;
-	}
-	 
-	 
-
-}

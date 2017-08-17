@@ -1,5 +1,7 @@
 package com.isha.donation.DAO;
 
+import org.springframework.stereotype.Repository;
+
 import com.isha.donation.entity.UploadDonor;
 
 public interface UploadDAO {

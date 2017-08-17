@@ -6,7 +6,6 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import com.isha.donation.entity.Donor;
 import com.isha.donation.entity.UploadDonor;
 
 @Repository("uploaddao")
