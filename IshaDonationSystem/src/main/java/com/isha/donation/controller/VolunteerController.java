@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.UriComponentsBuilder;
+ 
+
+
 
 import com.isha.donation.entity.Volunteer;
 import com.isha.donation.Service.VolunteerService;
@@ -21,6 +24,8 @@ import com.isha.donation.utils.Utils;
 @Controller
 public class VolunteerController {
 
+ 
+	
     @Autowired
     private VolunteerService mVolunteerService;
     private Utils mUtils = new Utils();
@@ -38,6 +43,7 @@ public class VolunteerController {
         try {
             volunteer.setCreateDate(mUtils.getCurrentTime());
             volunteer.setComments(volunteer.getName() + " : added.");
+            
             mVolunteerService.save(volunteer);
             volunteerId = String.valueOf(volunteer.getId());
         } catch (Exception ex) {
@@ -92,6 +98,7 @@ public class VolunteerController {
         try {
             volunteer.setUpdateDate(mUtils.getCurrentTime());
             volunteer.setId(id);
+           
             volunteeTemp= mVolunteerService.save(volunteer);
         } catch (Exception ex) {
         	return new ResponseEntity("Error updating the Volunteer:",HttpStatus.CONFLICT);

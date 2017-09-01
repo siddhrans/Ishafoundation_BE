@@ -1,7 +1,5 @@
 package com.isha.donation.utils;
 
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -11,19 +9,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.util.UriComponentsBuilder;
 
- 
+
 import com.isha.donation.entity.Volunteer;
 
 public class Utils {
 
     public String getCurrentTime() {
         String time = "";
-        time = new SimpleDateFormat("dd.MM.yyyy", Locale.US).format(new Date());  
+        time = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss", Locale.US).format(new Date());  
         return time;
     }
-    
-    
-    
 
     public ResponseEntity<?> checkSignInCredentials(Volunteer volunteer, String password, UriComponentsBuilder ucBuilder) {
         if (volunteer.getPassword().equals(password)) {
