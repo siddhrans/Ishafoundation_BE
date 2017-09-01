@@ -55,8 +55,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.isha.donation.Service.DonorService;
 import com.isha.donation.Service.IshaDonorService;
 import com.isha.donation.entity.Donor;
-import com.isha.donation.entity.UploadDonor;
  
+import com.isha.donation.excelhead.ExcelColumn;
 
 @Controller
 public class DownloadController {
@@ -75,7 +75,10 @@ public class DownloadController {
 	*/
 	
 	
- 
+	@Autowired
+	private ExcelColumn excelColumn;
+	
+	
 	
 	 
 		@SuppressWarnings({ "unchecked", "deprecation" })
@@ -87,11 +90,7 @@ public class DownloadController {
 	String FILE_NAME="C:/xls/isha.xls"; 
 	
 	File file=new File(FILE_NAME);
-	//response.setContentType("application/xls");
-	  
-  //   response.setContentType("application/vnd.ms-excel");
-
-  //  response.setHeader("Content-Disposition", "attachment; filename=" + "isha.xls");
+	 
 	
 	response.setContentType("application/vnd.ms-excel");
 	response.setHeader("Content-disposition", "attachment;filename=isha.xls");
@@ -102,11 +101,7 @@ public class DownloadController {
     HSSFWorkbook workbook=new HSSFWorkbook();
     HSSFSheet sheet=workbook.createSheet("isha");
     
-    /*
-	 XSSFWorkbook workbook = new XSSFWorkbook();
-       XSSFSheet sheet = workbook.createSheet("isha");
-        sheet.autoSizeColumn(1000000);
-    */  
+   
        
        System.out.println("Creating excel");
        
@@ -122,7 +117,7 @@ public class DownloadController {
        int rowcoulumn=0;
      int count=0;
      sheet.setColumnWidth(0, 3000);
-     //sheet.addMergedRegion(new CellRangeAddress(1, 2, 1, 2));
+    
      Row rowheader = sheet.createRow(rowNum++);
      
      Cell cellcolumn = rowheader.createCell(coulumncount);
@@ -214,15 +209,7 @@ public class DownloadController {
       }catch (Exception e) {
 		 e.printStackTrace();
 	}
-      /* try {
-           FileOutputStream outputStream = new FileOutputStream(FILE_NAME);
-           workbook.write(outputStream);
-           workbook.close();
-       } catch (FileNotFoundException e) {
-           e.printStackTrace();
-       } catch (IOException e) {
-           e.printStackTrace();
-       }*/
+       
 
        return new ResponseEntity("downloaded succesfully ",HttpStatus.OK);
 	
@@ -238,11 +225,7 @@ public class DownloadController {
 	String FILE_NAME="C:/xls/isharemitance.xls"; 
 	
 	File file=new File(FILE_NAME);
-	//response.setContentType("application/xls");
-	  
-  //   response.setContentType("application/vnd.ms-excel");
-
-  //  response.setHeader("Content-Disposition", "attachment; filename=" + "isha.xls");
+	 
 	
 	response.setContentType("application/vnd.ms-excel");
 	response.setHeader("Content-disposition", "attachment;filename=isharemitance.xls");
@@ -253,11 +236,7 @@ public class DownloadController {
     HSSFWorkbook workbook=new HSSFWorkbook();
     HSSFSheet sheet=workbook.createSheet("isha");
     
-    /*
-	 XSSFWorkbook workbook = new XSSFWorkbook();
-       XSSFSheet sheet = workbook.createSheet("isha");
-        sheet.autoSizeColumn(1000000);
-    */  
+    
        
        System.out.println("Creating excel");
        
@@ -273,13 +252,13 @@ public class DownloadController {
        int rowcoulumn=0;
      int count=0;
      sheet.setColumnWidth(0, 3000);
-     //sheet.addMergedRegion(new CellRangeAddress(1, 2, 1, 2));
+     
      Row rowheader = sheet.createRow(rowNum++);
      
      Cell cellcolumn = rowheader.createCell(coulumncount);
      CellStyle style = workbook.createCellStyle();
      style.setFillBackgroundColor(IndexedColors.YELLOW .getIndex());
-     //style.setFillPattern(CellStyle.SOLID_FOREGROUND);
+     
      style.setBorderBottom(CellStyle.BORDER_THIN);
      style.setBottomBorderColor(IndexedColors.BLACK.getIndex());
      style.setBorderLeft(CellStyle.BORDER_THIN);
@@ -365,15 +344,7 @@ public class DownloadController {
       }catch (Exception e) {
 		 e.printStackTrace();
 	}
-      /* try {
-           FileOutputStream outputStream = new FileOutputStream(FILE_NAME);
-           workbook.write(outputStream);
-           workbook.close();
-       } catch (FileNotFoundException e) {
-           e.printStackTrace();
-       } catch (IOException e) {
-           e.printStackTrace();
-       }*/
+  
 
        return new ResponseEntity("downloaded succesfully ",HttpStatus.OK);
 	
@@ -386,6 +357,7 @@ public class DownloadController {
 		@RequestMapping(value=("/uploadxls"),method=RequestMethod.POST)
 		 public @ResponseBody ResponseEntity<?> upload(@RequestParam("file") MultipartFile multipartFile){
 			int count=1;
+			ArrayList<String> uploadList=new ArrayList<String>();
 			try{
 				
 			 HSSFWorkbook workbook=new HSSFWorkbook(multipartFile.getInputStream());
@@ -424,12 +396,7 @@ public class DownloadController {
 			    	}else{
 			    		return new ResponseEntity("need  BRANCHNAME",HttpStatus.CONFLICT);
 			    	}
-			    	/*st=row.getCell(cell++).getStringCellValue();
-			    	if(st.equals("BRANCHNAME")){
-			    		
-			    	}else{
-			    		return new ResponseEntity("need  BRANCHNAME",HttpStatus.CONFLICT);
-			    	}*/
+			    	 
 			    	
 			    	st=row.getCell(cell++).getStringCellValue();
 			    	System.out.println(st);
@@ -481,14 +448,7 @@ public class DownloadController {
 			    		return new ResponseEntity("need  STARTDATE",HttpStatus.CONFLICT);
 			    	}
 			    	
-			    	
-			    	/*st=row.getCell(cell++).getStringCellValue();
-			    	if(st.equals("STARTDATE")){
-			    		
-			    	}else{
-			    		return new ResponseEntity("need  STARTDATE",HttpStatus.CONFLICT);
-			    	}*/
-			    	
+			     
 			    	st=row.getCell(cell++).getStringCellValue();
 			    	System.out.println(st);
 			    	if(st.equals("ENDDATE")){
@@ -528,135 +488,115 @@ public class DownloadController {
 			    	int cell=0;
 			    	HSSFRow row = sheet.getRow(count++);
 			    	
-			    	UploadDonor uploaddonor=new UploadDonor();
+			    	Donor donor=new Donor();
+			    	//UploadDonor uploaddonor=new UploadDonor();
 			    	 
 			    	System.out.println("name:"+row.getCell(cell).getStringCellValue());
-			    	uploaddonor.setName(row.getCell(cell++).getStringCellValue());
+			    	donor.setName(row.getCell(cell++).getStringCellValue());
 			    	
 			    	System.out.println("accholdernumber:"+row.getCell(cell).getStringCellValue());
-			    	uploaddonor.setBankAccountholderName(row.getCell(cell++).getStringCellValue());
+			    	donor.setBankAccountholderName(row.getCell(cell++).getStringCellValue());
 			    	
 			    	System.out.println("bankname"+row.getCell(cell).getStringCellValue());
-			    	uploaddonor.setBankName(row.getCell(cell++).getStringCellValue());
+			    	donor.setBankName(row.getCell(cell++).getStringCellValue());
 			    	
 			    	System.out.println("branchname"+row.getCell(cell).getStringCellValue());
-			    	uploaddonor.setBranchName(row.getCell(cell++).getStringCellValue());
-			    	
-			    	
-			    	//double ss=row.getCell(cell++).getStringCellValue();
-			    	long d=(long)row.getCell(cell++).getNumericCellValue();
-			    	System.out.println("moble"+d);
-			    	String  number=String.valueOf(d);
-			    	System.out.println(number);
+			    	donor.setBranchName(row.getCell(cell++).getStringCellValue());
+			   
 			    	 
 			    	
+			    	int accnum=(int)row.getCell(cell++).getNumericCellValue();
+			    	String accnumber=String.valueOf(accnum);
 			    	
-			    	//String st=row.getCell(cell).getStringCellValue();
 			     
-			    	// System.out.println("accountnumber"+st);
-			    	uploaddonor.setBankAccountNumber(number);
+			    	donor.setBankAccountNumber(accnumber);
+			   
 			    	
-			    	//System.out.println(row.getCell(cell).getStringCellValue());
-			    	/*String d=row.getCell(cell).getStringCellValue();
-			    	System.out.println(d);*/
-
+			    	
+			     
+			    	 
+			    	
+			    	System.out.println((int)row.getCell(cell).getNumericCellValue());
+			    	donor.setBankMICR((int)row.getCell(cell++).getNumericCellValue());
 			    	
 			    	 
 			    	
-			    	System.out.println("micr"+row.getCell(cell).getNumericCellValue());
-			    	uploaddonor.setBankMICR((int)row.getCell(cell++).getNumericCellValue());
 			    	
-			    	d=(long)row.getCell(cell++).getNumericCellValue();
-			    	System.out.println("moble"+d);
-			    	number=String.valueOf(d);
-			    	System.out.println(number);
 			    	
-			    	//System.out.println("ifscode"+row.getCell(cell).getStringCellValue());
-			    	uploaddonor.setBankIfscCode(number);
+			    	
+			    	
+			    	 
+			    	
+			    	 
+			    	String ifsc=row.getCell(cell++).getStringCellValue();
+			    	System.out.println("ifs"+ifsc);
+			    	donor.setBankIfscCode(ifsc);
+			    	
+			  
 			    	
 			    	System.out.println("accounttype"+row.getCell(cell).getStringCellValue());
-			    	uploaddonor.setBankAccountType(row.getCell(cell++).getStringCellValue());
-			    	
+			    	donor.setBankAccountType(row.getCell(cell++).getStringCellValue());
+			    	 
 			    	System.out.println("email"+row.getCell(cell).getStringCellValue());
-			    	uploaddonor.setEmail(row.getCell(cell++).getStringCellValue());
+			    	donor.setEmail(row.getCell(cell++).getStringCellValue());
 			    	
-			    	/*  String d=(String)row.getCell(cell++).getStringCellValue();
-				     int dd=Integer.parseInt(d);
-				     System.out.println(dd);*/
-			    	
-			    	  
-			    	  d=(long)row.getCell(cell++).getNumericCellValue();
-			    	System.out.println("moble"+d);
-			    	String mb=String.valueOf(d);
 			    	 
 			    	
-			    	//System.out.println("mobile"+String.valueOf((row.getCell(cell).getStringCellValue())));
-			    	 uploaddonor.setUpdatemobileNumber(mb);
 			    	 
 			    	 
-			    	// System.out.println(row.getCell(cell).getStringCellValue());
-			    //	uploaddonor.setUpdatemobileNumber(row.getCell(cell++).getStringCellValue());
-			    	//System.out.println(row.getCell(cell).getStringCellValue());
-			    	 /*
-			    	  Date date=row.getCell(cell).getDateCellValue();
-			    	   String ddte=String.valueOf(date);
-			    	 DateFormat cstDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-			    	 System.out.println(cstDate); 
-			    	 */
+			    long mobile=(long)row.getCell(cell++).getNumericCellValue();
+			    	String mob=String.valueOf(mobile);
+			    	System.out.println("mobile"+mob);
+			    	donor.setMobileNumber(mob);
 			    	 
-			    	 
+			    	
 			    	 System.out.println("startdate"+row.getCell(cell).getDateCellValue());
-			    	uploaddonor.setStartDate((Date)row.getCell(cell++).getDateCellValue());
+			    	 donor.setStartDate((Date)row.getCell(cell++).getDateCellValue());
 			    	
 			    	 
 			    	 			    
 			    	 System.out.println("endate"+row.getCell(cell).getDateCellValue());
 			    	
-			    	uploaddonor.setEndDate((Date)row.getCell(cell++).getDateCellValue());
+			    	 donor.setEndDate((Date)row.getCell(cell++).getDateCellValue());
 			    	
-			    	 
-			    	/*String amt=row.getCell(cell++).getStringCellValue();
-			    	System.out.println(amt);*/
+			    	  
 			    	System.out.println("amoutn"+row.getCell(cell).getNumericCellValue());
-			    	  	uploaddonor.setAmount((double)row.getCell(cell++).getNumericCellValue());
+			    	donor.setAmount((double)row.getCell(cell++).getNumericCellValue());
 			    	  	
 			    	   
-				    	//System.out.println(row.getCell(cell).getNumericCellValue());
-			    	  	
-			    	 //System.out.println(row.getCell(cell).getStringCellValue());
-			    	uploaddonor.setFrequency(row.getCell(cell++).getStringCellValue());
-			    	//System.out.println(row.getCell(cell).getStringCellValue());
-			    	/*
-			    	uploaddonor.setStatus(row.getCell(cell++).getStringCellValue());
-			    	uploaddonor.setRegion(row.getCell(cell++).getStringCellValue());
-			    	uploaddonor.setState(row.getCell(cell++).getStringCellValue());
-			    	uploaddonor.setCity(row.getCell(cell++).getStringCellValue());
-			    	uploaddonor.setCenter(row.getCell(cell++).getStringCellValue());
+			    	  	System.out.println("frequency"+row.getCell(cell).getStringCellValue());
+			    	  	donor.setFrequency(row.getCell(cell++).getStringCellValue());
+			    	 
+			    			    	
+			    	  	Date createdate=row.getCell(cell).getDateCellValue();
+			    	  	 DateFormat df=new SimpleDateFormat("mm-dd-yyyy");
+			    	  	 String cdate=df.format(createdate);
+			 
+			    	System.out.println("create Date"+cdate);
+			    	
+			    	 donor.setCreateDate(cdate);
 			    	
 			    	
 			    	
 			    	
-			    	
-			    	
-			    	
-			    	
-			    	
-			    	
-			    	uploaddonor.setTppsConsumerCode(row.getCell(cell++).getStringCellValue());
-			    	uploaddonor.setCreateDate(row.getCell(cell++).getStringCellValue());
-			    	uploaddonor.setCreateDate(row.getCell(cell++).getStringCellValue());*/
+			    	 
 			    	
 			  try{	
-				  System.out.println("uploadmobile number->"+uploaddonor.getUpdatemobileNumber());
-			    	  UploadDonor donorinfo=ishaDonorService.findUploadDonorMobile(uploaddonor.getUpdatemobileNumber());
+				  System.out.println("uploadmobile number->"+donor.getDonorPhoneNumber());
+			    	  Donor donorinfo=ishaDonorService.findDonorMobile(donor.getDonorPhoneNumber());
 			            System.out.println("*******************************");
 			            System.out.println(donorinfo);
 			            System.out.println("*******************************");
 			            if(donorinfo==null){
-			          ishaDonorService.saveUploadedDonor(uploaddonor);
+			            	mdonorService.save(donor);
 			            }else{
-			            	return new ResponseEntity<String>("duplicate entry", HttpStatus.CONFLICT);
+			            	uploadList.add(donorinfo.getMobileNumber());
+			            	if(count==sheet.getLastRowNum()){
+			            		return new ResponseEntity<String>("duplicate entry"+"\t"+uploadList+"is duplicate entry", HttpStatus.CONFLICT);
+				            } 
+			            	//return new ResponseEntity<String>("duplicate entry"+"\t"+donorinfo.getUpdatemobileNumber()+"is duplicate entry", HttpStatus.CONFLICT);
 			            }
+			            
 			    	
 			    	
 			    }catch (SQLWarningException e) {
@@ -674,7 +614,7 @@ public class DownloadController {
 			}catch(Exception e){
 				e.printStackTrace();
 			}*/
-			return new ResponseEntity<String>("successfully updated", HttpStatus.OK);
+			return new ResponseEntity<String>("successfully updated", HttpStatus.CREATED);
 			
 			
 		}
@@ -696,3 +636,6 @@ public class DownloadController {
 
 
 
+
+	 
+ 

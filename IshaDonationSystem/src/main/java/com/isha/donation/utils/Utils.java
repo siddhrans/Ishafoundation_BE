@@ -16,7 +16,7 @@ public class Utils {
 
     public String getCurrentTime() {
         String time = "";
-        time = new SimpleDateFormat("yyyy.MM.dd", Locale.US).format(new Date());  
+        time = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss", Locale.US).format(new Date());  
         return time;
     }
 

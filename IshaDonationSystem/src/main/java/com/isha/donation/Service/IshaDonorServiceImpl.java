@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.isha.donation.DAO.IshaDonorDao;
-import com.isha.donation.DAO.UploadDAO;
+ 
 import com.isha.donation.entity.Donor;
-import com.isha.donation.entity.UploadDonor;
+ 
 
 
 @Service("ishaDonorService")
@@ -20,8 +20,8 @@ public class IshaDonorServiceImpl implements IshaDonorService{
 	 @Autowired
 	 private IshaDonorDao ishaDonorDao;
 	 
-	 @Autowired
-	 private UploadDAO uploadDAO;
+	 /*@Autowired
+	 private UploadDAO uploadDAO;*/
 	
 	@Override
 	public List<Donor> findAllDonor(String status) {
@@ -30,10 +30,10 @@ public class IshaDonorServiceImpl implements IshaDonorService{
 	}
 
 	
-	public void saveUploadedDonor(UploadDonor uploadonor){
-		uploadDAO.saveUploadedDonor(uploadonor);
+	/*public void saveUploadedDonor(Donor uploadonor){
+		ishaDonorDao.saveUploadedDonor(uploadonor);
 	}
-
+*/
 
 	@Override
 	public List<Donor> findDonorRemitance(String status) {
@@ -48,9 +48,9 @@ public class IshaDonorServiceImpl implements IshaDonorService{
 		return ishaDonorDao.findDonorMobile(mobile);
 	}
 	
-	public UploadDonor findUploadDonorMobile(String mobile){
+	/*public UploadDonor findUploadDonorMobile(String mobile){
 		return uploadDAO.findUploadDonorMobile(mobile);
-	}
+	}*/
 	
 	
 	

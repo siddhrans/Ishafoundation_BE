@@ -13,7 +13,6 @@ public class CompositeId {
 
 	@Autowired
 	private IDonorRepository mDonorRepository;
-	
 
 	@Autowired
 	JdbcTemplate jtemp;

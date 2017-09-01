@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,20 +16,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.UriComponentsBuilder;
 
- 
 import com.isha.donation.entity.Donor;
-import com.isha.donation.IdGeneration.CompositeId;
 import com.isha.donation.Service.DonorService;
+import com.isha.donation.Service.IshaDonorService;
 import com.isha.donation.utils.Utils;
  
 @Controller
 public class DonorController {
 
-	@Autowired
-	 CompositeId compositeId;
-	
     @Autowired
     private DonorService mdonorService;
+    
+    @Autowired
+    private IshaDonorService ishaDonorService;
     private Utils mUtils = new Utils();
 
     @RequestMapping(value = "/ShowAlldonor", method = RequestMethod.GET)
@@ -47,14 +45,22 @@ public class DonorController {
         @SuppressWarnings("unused")
 		String donorId = "";
         try {
-        	System.out.println(donor);
-       
+        	
+         System.out.println(donor);
             donor.setCreateDonordate(mUtils.getCurrentTime());
-            System.out.println(compositeId.generate());
-            donor.setTppsConsumerCode(compositeId.generate());
-           // donor.setDonorComments(donor.getCreatorName());
+            //donor.setDonorComments(donor.getCreatorName());
+            Long mobile=Long.parseLong(donor.getMobileNumber());
+            System.out.println(mobile);
+            Donor donorinfo=ishaDonorService.findDonorMobile(donor.getMobileNumber());
+            System.out.println("*******************************");
+            System.out.println(donorinfo);
+            System.out.println("*******************************");
+            if(donorinfo==null){
           Donor donortemp=  mdonorService.save(donor);
-         
+            }else{
+            	return new ResponseEntity<String>("duplicate entry", HttpStatus.CONFLICT);
+            }
+          
            donorId = String.valueOf(donor.getDonorId());
             
         } catch (Exception ex) {

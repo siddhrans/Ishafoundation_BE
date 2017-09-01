@@ -14,9 +14,11 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+ 
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.isha.donation.IdGeneration.CompositeId;
+import com.isha.donation.excelhead.ExcelColumn;
 
  
 
@@ -32,10 +34,10 @@ public class HibernateConfiguration {
 	}
 	
 	
-	/*@Bean
+	@Bean
 	public ExcelColumn getColumn(){
 		return new ExcelColumn();
-	}*/
+	}
 	
 	static{
 		System.out.println("HibernateCOnfiguration->s.b");
@@ -84,6 +86,8 @@ public class HibernateConfiguration {
        return txManager;
     }
     
+    
+   
      
    /* @Bean
     @Autowired

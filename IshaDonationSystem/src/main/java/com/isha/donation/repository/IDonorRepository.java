@@ -9,5 +9,5 @@ import com.isha.donation.entity.Donor;
 public interface IDonorRepository extends CrudRepository<Donor,Long>{
     public Donor findByMobileNumber(@Param("mobileNumber") String mobileNumber);
     
-    public Donor findById(@Param("TPPSConsumerCode") String TPPSConsumerCode);
+    
 }
