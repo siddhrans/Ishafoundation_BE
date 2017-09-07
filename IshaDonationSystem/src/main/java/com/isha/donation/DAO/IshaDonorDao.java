@@ -12,6 +12,8 @@ public interface IshaDonorDao {
 	public List<Donor> findDonorRemitance(String status);
 	
 	public Donor findDonorMobile(String mobile);
+	
+	public void save(Donor donor);
 	/*public void saveUploadedDonor(Donor uploadonor);*/
 	
 }

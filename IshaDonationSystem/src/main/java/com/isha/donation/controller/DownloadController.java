@@ -52,6 +52,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.isha.donation.IdGeneration.CompositeId;
 import com.isha.donation.Service.DonorService;
 import com.isha.donation.Service.IshaDonorService;
 import com.isha.donation.entity.Donor;
@@ -63,6 +64,11 @@ public class DownloadController {
 
 	@Autowired
 	private DonorService donorService;
+	
+	 
+    @Autowired
+    private CompositeId compositeId;
+	
 	
 	@Autowired
 	private IshaDonorService ishaDonorService;
@@ -355,7 +361,8 @@ public class DownloadController {
 		
 		
 		@RequestMapping(value=("/uploadxls"),method=RequestMethod.POST)
-		 public @ResponseBody ResponseEntity<?> upload(@RequestParam("file") MultipartFile multipartFile){
+		 @ResponseBody
+		 public ResponseEntity<?> upload(@RequestParam("file") MultipartFile multipartFile){
 			int count=1;
 			ArrayList<String> uploadList=new ArrayList<String>();
 			try{
@@ -547,7 +554,7 @@ public class DownloadController {
 			    long mobile=(long)row.getCell(cell++).getNumericCellValue();
 			    	String mob=String.valueOf(mobile);
 			    	System.out.println("mobile"+mob);
-			    	donor.setMobileNumber(mob);
+			    	donor.setDonorPhoneNumber(mob);
 			    	 
 			    	
 			    	 System.out.println("startdate"+row.getCell(cell).getDateCellValue());
@@ -588,9 +595,10 @@ public class DownloadController {
 			            System.out.println(donorinfo);
 			            System.out.println("*******************************");
 			            if(donorinfo==null){
+			            	donor.setTppsConsumerCode(compositeId.generate());
 			            	mdonorService.save(donor);
 			            }else{
-			            	uploadList.add(donorinfo.getMobileNumber());
+			            	uploadList.add(donorinfo.getDonorPhoneNumber());
 			            	if(count==sheet.getLastRowNum()){
 			            		return new ResponseEntity<String>("duplicate entry"+"\t"+uploadList+"is duplicate entry", HttpStatus.CONFLICT);
 				            } 

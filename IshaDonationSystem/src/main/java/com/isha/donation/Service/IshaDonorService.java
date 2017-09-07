@@ -15,6 +15,8 @@ public interface IshaDonorService {
 	
 	public Donor findDonorMobile(String mobile);
 	
+	public void save(Donor donor);
+	
 	/*public UploadDonor findUploadDonorMobile(String mobile);*/
 	
 }

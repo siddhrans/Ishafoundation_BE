@@ -43,13 +43,13 @@ public class Donor implements Serializable {
 	@Column(name = "Donor_Phone_Num", nullable = false)
 	private String mobileNumber;
 
-	public String getDonorPhoneNumber() {
+	 public String getDonorPhoneNumber() {
 		return mobileNumber;
 	}
 
 	public void setDonorPhoneNumber(String mobileNumber) {
 		this.mobileNumber = mobileNumber;
-	}
+	} 
 
 	@Column(name = "Donor_Name", nullable = false)
 	private String name;
@@ -408,13 +408,7 @@ public class Donor implements Serializable {
 		this.id = id;
 	}
 
-	public String getMobileNumber() {
-		return mobileNumber;
-	}
-
-	public void setMobileNumber(String mobileNumber) {
-		this.mobileNumber = mobileNumber;
-	}
+ 	 
 
 	public String getName() {
 		return name;

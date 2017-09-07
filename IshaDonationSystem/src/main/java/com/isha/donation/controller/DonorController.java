@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.isha.donation.entity.Donor;
+import com.isha.donation.IdGeneration.CompositeId;
 import com.isha.donation.Service.DonorService;
 import com.isha.donation.Service.IshaDonorService;
 import com.isha.donation.utils.Utils;
@@ -29,6 +30,9 @@ public class DonorController {
     
     @Autowired
     private IshaDonorService ishaDonorService;
+    
+    @Autowired
+    private CompositeId compositeId;
     private Utils mUtils = new Utils();
 
     @RequestMapping(value = "/ShowAlldonor", method = RequestMethod.GET)
@@ -48,15 +52,19 @@ public class DonorController {
         	
          System.out.println(donor);
             donor.setCreateDonordate(mUtils.getCurrentTime());
+            donor.setTppsConsumerCode(compositeId.generate());
             //donor.setDonorComments(donor.getCreatorName());
-            Long mobile=Long.parseLong(donor.getMobileNumber());
+            Long mobile=Long.parseLong(donor.getDonorPhoneNumber());
             System.out.println(mobile);
-            Donor donorinfo=ishaDonorService.findDonorMobile(donor.getMobileNumber());
+            Donor donorinfo=ishaDonorService.findDonorMobile(donor.getDonorPhoneNumber());
             System.out.println("*******************************");
             System.out.println(donorinfo);
             System.out.println("*******************************");
             if(donorinfo==null){
+            	System.out.println("null");
+            	System.out.println(donor);
           Donor donortemp=  mdonorService.save(donor);
+            	//ishaDonorService.save(donor);
             }else{
             	return new ResponseEntity<String>("duplicate entry", HttpStatus.CONFLICT);
             }

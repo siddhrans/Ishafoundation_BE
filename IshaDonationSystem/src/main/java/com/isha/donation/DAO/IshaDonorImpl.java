@@ -48,6 +48,10 @@ public class IshaDonorImpl extends AbstractDao<Long,Donor>  implements IshaDonor
 		return  donor;
 	}
 	 
+	
+	public void save(Donor donor){
+		persist(donor);
+	}
 	 
 
 }

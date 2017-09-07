@@ -48,6 +48,11 @@ public class IshaDonorServiceImpl implements IshaDonorService{
 		return ishaDonorDao.findDonorMobile(mobile);
 	}
 	
+	
+	public void save(Donor donor){
+		ishaDonorDao.save(donor);
+	}
+	
 	/*public UploadDonor findUploadDonorMobile(String mobile){
 		return uploadDAO.findUploadDonorMobile(mobile);
 	}*/

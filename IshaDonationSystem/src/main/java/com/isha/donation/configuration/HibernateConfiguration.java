@@ -89,11 +89,7 @@ public class HibernateConfiguration {
     
    
      
-   /* @Bean
-    @Autowired
-    public SchoolPdfView getBean(){
-    	return new SchoolPdfView();
-    } */
+     
 }
 
 	
