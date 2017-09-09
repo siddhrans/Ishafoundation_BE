@@ -1,4 +1,4 @@
-package com.isha.donation.controller;
+ package com.isha.donation.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -52,12 +52,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.isha.donation.IdGeneration.CompositeId;
 import com.isha.donation.Service.DonorService;
 import com.isha.donation.Service.IshaDonorService;
 import com.isha.donation.entity.Donor;
  
-import com.isha.donation.excelhead.ExcelColumn;
+
 
 @Controller
 public class DownloadController {
@@ -65,28 +64,14 @@ public class DownloadController {
 	@Autowired
 	private DonorService donorService;
 	
-	 
-    @Autowired
-    private CompositeId compositeId;
-	
-	
 	@Autowired
 	private IshaDonorService ishaDonorService;
 	
 	 @Autowired
 	    private DonorService mdonorService;
 	
-	/*@Autowired
-	pri
-	*/
-	
-	
-	@Autowired
-	private ExcelColumn excelColumn;
-	
-	
-	
 	 
+	
 		@SuppressWarnings({ "unchecked", "deprecation" })
 		@RequestMapping(value="/downloadnewdonor",method=RequestMethod.GET)
 		public ResponseEntity download(HttpServletRequest request,HttpServletResponse response) {
@@ -361,8 +346,8 @@ public class DownloadController {
 		
 		
 		@RequestMapping(value=("/uploadxls"),method=RequestMethod.POST)
-		 @ResponseBody
-		 public ResponseEntity<?> upload(@RequestParam("file") MultipartFile multipartFile){
+		@ResponseBody 
+		 public ResponseEntity<?> upload(@RequestParam("file") MultipartFile multipartFile,UriComponentsBuilder ucBuilder){
 			int count=1;
 			ArrayList<String> uploadList=new ArrayList<String>();
 			try{
@@ -483,13 +468,7 @@ public class DownloadController {
 			    	}
 			    	
 			    }
-			    
-			    
-			    			    
-			    
-			    
-			    
-			    //try{
+			   //try{
 			    
 			    while(count<=sheet.getLastRowNum()){
 			    	int cell=0;
@@ -517,41 +496,19 @@ public class DownloadController {
 			    	
 			     
 			    	donor.setBankAccountNumber(accnumber);
-			   
-			    	
-			    	
-			     
-			    	 
-			    	
-			    	System.out.println((int)row.getCell(cell).getNumericCellValue());
+			   System.out.println((int)row.getCell(cell).getNumericCellValue());
 			    	donor.setBankMICR((int)row.getCell(cell++).getNumericCellValue());
-			    	
-			    	 
-			    	
-			    	
-			    	
-			    	
-			    	
-			    	 
-			    	
-			    	 
 			    	String ifsc=row.getCell(cell++).getStringCellValue();
 			    	System.out.println("ifs"+ifsc);
 			    	donor.setBankIfscCode(ifsc);
 			    	
-			  
-			    	
-			    	System.out.println("accounttype"+row.getCell(cell).getStringCellValue());
+			  System.out.println("accounttype"+row.getCell(cell).getStringCellValue());
 			    	donor.setBankAccountType(row.getCell(cell++).getStringCellValue());
 			    	 
 			    	System.out.println("email"+row.getCell(cell).getStringCellValue());
 			    	donor.setEmail(row.getCell(cell++).getStringCellValue());
 			    	
-			    	 
-			    	
-			    	 
-			    	 
-			    long mobile=(long)row.getCell(cell++).getNumericCellValue();
+			   long mobile=(long)row.getCell(cell++).getNumericCellValue();
 			    	String mob=String.valueOf(mobile);
 			    	System.out.println("mobile"+mob);
 			    	donor.setDonorPhoneNumber(mob);
@@ -582,20 +539,13 @@ public class DownloadController {
 			    	System.out.println("create Date"+cdate);
 			    	
 			    	 donor.setCreateDate(cdate);
-			    	
-			    	
-			    	
-			    	
-			    	 
-			    	
-			  try{	
+			 try{	
 				  System.out.println("uploadmobile number->"+donor.getDonorPhoneNumber());
 			    	  Donor donorinfo=ishaDonorService.findDonorMobile(donor.getDonorPhoneNumber());
 			            System.out.println("*******************************");
 			            System.out.println(donorinfo);
 			            System.out.println("*******************************");
 			            if(donorinfo==null){
-			            	donor.setTppsConsumerCode(compositeId.generate());
 			            	mdonorService.save(donor);
 			            }else{
 			            	uploadList.add(donorinfo.getDonorPhoneNumber());
@@ -611,18 +561,21 @@ public class DownloadController {
 			    	return new ResponseEntity<String>("exception", HttpStatus.CONFLICT);
 				}  
 			    }
+			    
 			    }catch(Exception e){
-			    	return new ResponseEntity<String>("exception arised when reading a document", HttpStatus.CONFLICT);
+			    	return new ResponseEntity<String>("exception arised when reading a document"+e, HttpStatus.CONFLICT);
 			    }
 			    
-			    
-				
-		        
 			/*    
 			}catch(Exception e){
 				e.printStackTrace();
 			}*/
-			return new ResponseEntity<String>("successfully updated", HttpStatus.CREATED);
+			
+			 HttpHeaders headers = new HttpHeaders();
+			headers.setLocation(ucBuilder.path("/uploadxls").buildAndExpand("successfully uploaded").toUri());
+			 
+			
+			return new ResponseEntity<String>(headers, HttpStatus.CREATED);
 			
 			
 		}

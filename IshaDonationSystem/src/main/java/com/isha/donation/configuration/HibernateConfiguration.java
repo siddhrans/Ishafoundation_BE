@@ -33,12 +33,7 @@ public class HibernateConfiguration {
 		return new CompositeId();
 	}
 	
-	
-	@Bean
-	public ExcelColumn getColumn(){
-		return new ExcelColumn();
-	}
-	
+		
 	static{
 		System.out.println("HibernateCOnfiguration->s.b");
 	}
